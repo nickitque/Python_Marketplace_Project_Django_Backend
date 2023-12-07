@@ -6,16 +6,16 @@
   <div class="pb-6 grid grid-cols-4 gap-4 bg-gray-100">
     <div class="col-span-1">
       <form action="{% url 'item:items' %}" method="get">
-        <input name="query" class="w-full py-4 px-6 border rounded-xl" type="text" value="{{ query }}" placeholder="Search something">
-        <button class="mt-2 py-4 px-8 text-lg bg-teal-500 text-white rounded-xl">Search</button>
+        <input name="query" class="w-full py-4 px-6 border rounded-xl ml-1 mt-5" type="text" value="{{ query }}" placeholder="Search something">
+        <button class="mt-2 py-2 px-7 ml-1 text-lg bg-teal-500 text-white rounded-xl">Search</button>
         </input>
       </form>
 
         <hr class="my-6">
-        <p class="font-semibol">Categories</p>
+        <p class="font-semibold ml-4">Categories</p>
         <ul>
             {% for category in categories %}
-            <li class="py-2 px-2 rounded-xl {% if category.id == category_id %} bg-gray-200 {% endif %}">
+            <li class="py-2 px-2 ml-6 rounded-xl {% if category.id == category_id %} bg-gray-200 {% endif %}">
                 <a href="{% url 'item:items' %}?query={{ query }}&category={{ category.id }}">{{ category.name }}</a>
             </li>
 
