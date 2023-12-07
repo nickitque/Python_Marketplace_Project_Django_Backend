@@ -6,8 +6,8 @@
     <section class="bg-white dark:bg-gray-900">
     <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
         <div class="mr-auto place-self-center lg:col-span-7">
-            <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">First marketplace of Tuning parts in Poland!</h1>
-            <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">From checkout to global sales tax compliance, companies around the world use Flowbite to simplify their payment stack.</p>
+            <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">Best marketplace of Tuning parts in Poland!</h1>
+            <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Buy, sell and trade tuning parts, services and racecars. Everything in one place with <a class="text-red-600">Race</a>.</p>
             <a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center">
                 Get started
             </a>
@@ -22,9 +22,9 @@
 </section>
 </div>
 <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-    <h2 class="mb-12 text-2xl text-center">Newest advertisements</h2>
+    <h2 class="mb-10 text-2xl font-bold dark:text-white text-center">Newest advertisements</h2>
 
-    <div class="grid grid-cols-4 gap-3">
+    <div class="grid grid-cols-5 gap-3">
         {% for item in items %}
         <div>
             <a href="{% url 'item:detail' item.id %}">
@@ -33,8 +33,8 @@
                 </div>
 
                 <div class="p-6 bg-white rounded-b-xl">
-                    <h2 class="text-2xl">{{ item.name }}</h2>
-                    <p class="text-gray-500">Price: {{ item.price }}</p>
+                    <h2 class="text-xl">{{ item.name }}</h2>
+                    <p class="mt-1 text-gray-500"><a class="font-semibold text-gray-900 underline dark:text-white decoration-green-500">Price:</a> {{ item.price }} PLN</p>
                 </div>
             </a>
         </div>
@@ -43,12 +43,12 @@
 </div>
 
 <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-    <h2 class="mb-12 text-2xl text-center">Categories</h2>
+    <h2 class="mb-10 text-2xl font-bold dark:text-white text-center">Categories</h2>
     <div class="grid grid-cols-5 gap-3">
         {% for category in categories %}
                     <div>
             <a href="{% url 'item:items' %}?query={{ query }}&category={{ category.id }}">
-                <div class="p-6 bg-white rounded-xl">
+                <div class="p-6  bg-white rounded-xl">
                     <h2 class="text-2xl">{{ category.name }}</h2>
                     <p class="text-gray-500">{{ category.items.count }} items</p>
                 </div>
