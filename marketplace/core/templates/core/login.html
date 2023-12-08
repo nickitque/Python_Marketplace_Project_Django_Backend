@@ -25,8 +25,9 @@
             {{ field.errors }}
             {% endfor %}
             {{ form.non_field_errors }}
-
         </div>
+        {% else %}
+        <p>logged</p>
         {% endif %}
         <div></div>
 

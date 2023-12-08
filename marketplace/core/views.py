@@ -1,6 +1,13 @@
 from django.shortcuts import render, redirect
 from item.models import Category, Item
 from .forms import SignUpForm
+from django.contrib.auth import logout
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('/login/')
+
 
 def index(request):
     items = Item.objects.filter(is_sold=False)[0:6]
@@ -9,6 +16,7 @@ def index(request):
         'categories': categories,
         'items': items,
     })
+
 
 def contact(request):
     return render(request, 'core/contact.html')

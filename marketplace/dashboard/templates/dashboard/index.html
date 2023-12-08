@@ -2,7 +2,12 @@
 
 {% block title %} Homepage {% endblock %}
 {% block content %}
-<h1>Dashboard</h1>
+<div class="text-center">
+    <h1>Dashboard</h1>
+    <a href="/logout/">
+    <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Logout</button>
+    </a>
+</div>
 <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
     <h2 class="mb-12 text-2xl text-center">Here is your items, {{ user.get_username }}</h2>
     <div class="grid grid-cols-4 gap-3">
