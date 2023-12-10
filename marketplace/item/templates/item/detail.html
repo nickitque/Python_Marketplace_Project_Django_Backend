@@ -7,28 +7,26 @@
   <div>
       <img src="{{ item.image.url }}" class="rounded-xl" alt="">
 </div>
-  <!-- ... -->
   <div class="p-6 bg-gray-100 rounded-xl">
       <h1 class="mb-6 text-3xl">{{ item.name }}</h1>
-        <p class="text-gray-500"><strong>Price: {{ item.price }} PLN</strong></p>
-        <p class="text-gray-500"><strong>Seller: {{ item.created_by.username }}</strong></p>
+        <p class="text-gray-500"><strong><span class="text-base text-gray-900 dark:text-white">Price:</span> {{ item.price }} PLN</strong></p>
+      <p class="text-gray-500"><strong><span class="text-base text-gray-900 dark:text-white">Seller:</span> {{ item.created_by.username }}</strong></p>
         {% if item.description%}
       <p class="text-gray-700">
-            <strong class="text-gray-500">Description:</strong>
-    {{ item.description }}</p>
+          <strong class="text-gray-500"><span class="text-base text-gray-900 dark:text-white">Description:</span></strong> {{ item.description }}</p>
       {% endif %}
 
       {% if request.user == item.created_by %}
       <div class="mt-6 p-6 bg-white rounded-xl">
-          <p>This is your item!</p>
-          <a href="{% url 'item:edit' item.id %}" class="inline-block mt-6 px-5 py-1 text-lg font-semibold bg-teal-500 text-white rounded-xl">Edit</a>
-          <a href="{% url 'item:delete' item.id %}" class="inline-block mt-6 px-5 py-1 text-lg font-semibold bg-red-500 text-white rounded-xl">Delete item</a>
+          <p>This is your item, {{ user.get_username }}.</p>
+          <a href="{% url 'item:edit' item.id %}" class="inline-block mt-2 px-4 py-1 text-sm font-semibold bg-teal-500 text-white rounded-xl">Edit</a>
+          <a href="{% url 'item:delete' item.id %}" class="inline-block mt-2 px-3 py-1 text-sm font-semibold bg-red-500 text-white rounded-xl">Delete item</a>
       </div>
       {% else %}
 
-      <a href="{% url 'conversation:new' item.id %}" class="inline-block mt-7 px-6 py-2 text-base font-semibold
+      <a href="{% url 'conversation:new' item.id %}" class="inline-block mt-4 px-3 py-2 text-sm font-semibold
       bg-green-600 text-white rounded-xl hover:bg-green-800">Contact seller</a>
-      <a href="#" class="inline-block mt-6 px-6 py-2 text-base font-semibold
+      <a href="#" class="inline-block mt-4 px-3 py-2 text-sm font-semibold
       bg-teal-500 text-white rounded-xl hover:bg-teal-700">Show Phone</a>
       {% endif %}
       </div>
@@ -36,16 +34,16 @@
 
 <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
     <h2 class="mb-12 text-2xl text-center">Related advertisements</h2>
-    <div class="grid grid-cols-4 gap-3">
+    <div class="grid grid-cols-5 gap-3">
         {% for item in related_items %}
         <div>
             <a href="{% url 'item:detail' item.id %}">
                 <div>
-                    <img src="{{ item.image.url }}" alt="" class="rounded-t-xl">
+                    <img src="{{ item.image.url }}" alt="" class="h-36 w-full object-cover rounded-t-xl">
                 </div>
                 <div class="p-6 bg-white rounded-b-xl">
-                    <h2 class="text-2xl">{{ item.name }}</h2>
-                    <p class="text-gray-500">Price: {{ item.price }} PLN</p>
+                    <h2 class="font-medium text-gray-900 dark:text-white">{{ item.name }}</h2>
+                    <p class="text-gray-500">{{ item.price }} PLN</p>
                 </div>
             </a>
         </div>

@@ -3,6 +3,7 @@
 
 {% block title %}Sign up{% endblock %}
 
+
 {% block content %}
 <div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl">
     <h1 class="mb-6 text-3xl">Log in</h1>
@@ -16,7 +17,7 @@
             <label class="inline-block mb-2">Password </label><br>
             {{ form.password }}
             </div>
-        <button class="py-4 px-8 text-lg bg-teal-500 howver:bg-teal-700 rounded-xl text-white"Submit>
+        <button class="py-4 px-8 text-lg bg-teal-500 howver:bg-teal-700 rounded-xl text-white">
             Submit
         </button>
         {% if form.errors or form.non_field_errors %}
@@ -27,7 +28,6 @@
             {{ form.non_field_errors }}
         </div>
         {% else %}
-        <p>logged</p>
         {% endif %}
         <div></div>
 
