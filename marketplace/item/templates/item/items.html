@@ -61,14 +61,15 @@
       <div class="col-span-4">
             <div class="grid grid-cols-5 gap-2">
         {% for item in items %}
-        <div>
+        <div class="mt-4">
             <a href="{% url 'item:detail' item.id %}">
                 <div>
                     <img class="h-32 w-full object-cover rounded-t-xl" src="{{ item.image_url|default_if_none:'/media/item_images/default.png' }}" alt="">
                 </div>
                 <div class="p-6 bg-white rounded-b-xl">
                     <h3 class="text-base text-gray-900 dark:text-white">{{ item.name }}</h3>
-                    <p class="text-sm text-gray-900 font-extralight dark:text-white">{{ item.price }} PLN</p>
+                    <p class="text-sm text-gray-900 font-extralight dark:text-white">{{ item.price }} PLN, <a class="text-xs">{{ item.location }}</a></p>
+
                 </div>
             </a>
         </div>

@@ -43,6 +43,8 @@
         <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Price:</span></strong> {{ item.price }} PLN</p>
         <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Seller:</span></strong> {{ item.created_by.username }}</p>
         <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Date published:</span></strong> {{ item.created_at }}</p>
+        <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Location:</span></strong> {{ item.location }}</p>
+
         {% if item.description%}
         <p class="text-gray-700"><strong class="text-gray-500"><span class="text-base text-gray-900 dark:text-white">Description:</span></strong> {{ item.description }}</p>
       {% endif %}
