@@ -1,14 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Category(models.Model):
     name = models.CharField(max_length=255)
+
     class Meta:
         ordering = ('name',)
         verbose_name_plural = 'Categories'
 
     def __str__(self):
         return self.name
+
 
 class Item(models.Model):
     category = models.ForeignKey(Category, related_name='items', on_delete=models.CASCADE)
@@ -21,6 +24,10 @@ class Item(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     # location = models.CharField(blank=True, choices=CITY_CHOICE, max_length=100)
 
+    @property
+    def image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
 
     def __str__(self):
         return self.name

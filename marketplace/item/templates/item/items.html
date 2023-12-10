@@ -45,7 +45,7 @@
         </input>
       </form>
         <hr class="my-3">
-        <p class="font-semibold ml-4">Categories</p>
+        <p class="font-semibold ml-4">Categories:</p>
         <ul>
             {% for category in categories %}
             <li class="w-32 px-2 ml-5 rounded-xl {% if category.id == category_id %} text-blue-500 bg-gray-200 {% endif %}">
@@ -64,9 +64,8 @@
         <div>
             <a href="{% url 'item:detail' item.id %}">
                 <div>
-                    <img class="h-32 w-full object-cover rounded-t-xl" src="{{ item.image.url }}" alt="">
+                    <img class="h-32 w-full object-cover rounded-t-xl" src="{{ item.image_url|default_if_none:'/media/item_images/default.png' }}" alt="">
                 </div>
-
                 <div class="p-6 bg-white rounded-b-xl">
                     <h3 class="text-base text-gray-900 dark:text-white">{{ item.name }}</h3>
                     <p class="text-sm text-gray-900 font-extralight dark:text-white">{{ item.price }} PLN</p>
