@@ -40,7 +40,7 @@
 </div>
   <div class="p-6 bg-gray-100 rounded-xl">
       <h1 class="mb-6 text-3xl">{{ item.name }}</h1>
-        <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Price:</span></strong> {{ item.price }} PLN</p>
+        <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Price:</span></strong> {{ item.price|floatformat:0 }} PLN</p>
         <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Seller:</span></strong> {{ item.created_by.username }}</p>
         <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Date published:</span></strong> {{ item.created_at }}</p>
         <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Location:</span></strong> {{ item.location }}</p>
@@ -58,7 +58,7 @@
       {% else %}
 
       <a href="{% url 'conversation:new' item.id %}" class="inline-block mt-4 px-3 py-2 text-sm font-semibold
-      bg-green-600 text-white rounded-xl hover:bg-green-800">Contact seller</a>
+      bg-green-600 text-white rounded-xl hover:bg-green-800">Send Message</a>
       <a href="#" class="inline-block mt-4 px-3 py-2 text-sm font-semibold
       bg-teal-500 text-white rounded-xl hover:bg-teal-700">Show Phone</a>
       {% endif %}
@@ -76,7 +76,7 @@
                 </div>
                 <div class="p-6 bg-white rounded-b-xl">
                     <h2 class="font-medium text-gray-900 dark:text-white">{{ item.name }}</h2>
-                    <p class="text-gray-500">{{ item.price }} PLN</p>
+                    <p class="text-gray-500">{{ item.price|floatformat:0 }} PLN</p>
                 </div>
             </a>
         </div>
