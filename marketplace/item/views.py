@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-
 from .forms import NewItemForm, EditItemForm
 from .models import Item, Category
 
@@ -25,9 +24,10 @@ def items(request):
         'category_id': int(category_id),
     })
 
-def detail(request, pk):
-    item = get_object_or_404(Item, pk=pk)
-    related_items = Item.objects.filter(category=item.category, is_sold=False).exclude(pk=pk)[0:3]
+
+def detail(request, slug):
+    item = get_object_or_404(Item, slug=slug)
+    related_items = Item.objects.filter(category=item.category, is_sold=False).exclude(slug=slug)[0:3]
 
     return render(request, 'item/detail.html', {
         'item': item,
@@ -45,7 +45,7 @@ def new(request):
             item.created_by = request.user
             item.save()
 
-            return redirect('item:detail', pk=item.id)
+            return redirect('item:detail', slug=item.slug)
     else:
         form = NewItemForm()
 
@@ -56,8 +56,8 @@ def new(request):
 
 
 @login_required()
-def edit(request, pk):
-    item = get_object_or_404(Item, pk=pk, created_by=request.user)
+def edit(request, slug):
+    item = get_object_or_404(Item, slug=slug, created_by=request.user)
 
     if request.method == "POST":
         form = EditItemForm(request.POST, request.FILES, instance=item)
@@ -65,7 +65,7 @@ def edit(request, pk):
         if form.is_valid():
             form.save()
 
-            return redirect('item:detail', pk=item.id)
+            return redirect('item:detail', slug=item.slug)
     else:
         form = EditItemForm(instance=item)
 
@@ -75,9 +75,13 @@ def edit(request, pk):
     })
 
 
+def category_detail(request, slug):
+    return render(request, 'item/category_detail.html')
+
+
 @login_required
-def delete(request, pk):
-    item = get_object_or_404(Item, pk=pk, created_by=request.user)
+def delete(request, slug):
+    item = get_object_or_404(Item, slug=slug, created_by=request.user)
     item.delete()
 
     return redirect('dashboard:index')
