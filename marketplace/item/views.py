@@ -24,8 +24,14 @@ def items(request):
         'category_id': int(category_id),
     })
 
+def category_detail(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    return render(request, 'item/category_detail.html', {
+        'category': category,
+    })
 
-def detail(request, slug):
+
+def detail(request, category_slug, slug):
     item = get_object_or_404(Item, slug=slug)
     related_items = Item.objects.filter(category=item.category, is_sold=False).exclude(slug=slug)[0:3]
 
@@ -74,9 +80,6 @@ def edit(request, slug):
         'title': 'Edit item',
     })
 
-
-def category_detail(request, slug):
-    return render(request, 'item/category_detail.html')
 
 
 @login_required

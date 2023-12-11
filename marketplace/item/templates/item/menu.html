@@ -11,5 +11,17 @@
                 <hr class="my-3">
         <a href="{%url 'item:items' %}"><button type="button" class="ml-4 text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Clear filters</button></a>
 
-      </div>
 
+        <hr class="my-3">
+        <p class="font-semibold ml-4">Categories:</p>
+        <ul>
+            {% for category in categories %}
+            <li class="w-32 px-2 ml-5 rounded-xl {% if category.id == category_id %} text-blue-500 bg-gray-200 {% endif %}">
+                <a class="hover:text-blue-500" href="{% url 'item:category_detail' category.slug %}">{{ category.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+                <hr class="my-3">
+        <a href="{%url 'item:items' %}"><button type="button" class="ml-4 text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Clear filters</button></a>
+
+      </div>
