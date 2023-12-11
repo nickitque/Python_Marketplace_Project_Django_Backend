@@ -43,9 +43,15 @@
         <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Price:</span></strong> {{ item.price|floatformat:0 }} PLN</p>
         <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Seller:</span></strong> {{ item.created_by.username }}</p>
         <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Date published:</span></strong> {{ item.created_at }}</p>
+
+        <a href="{% url 'item:items' %}?query={{ query }}&category={{ item.category.id }}"><p class="text-blue-500"><strong><span class="text-base text-gray-900 dark:text-white">Category:</span></strong> {{ item.category }}</p></a>
+
+      {% if item.updated_at%}
+        <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Date updated:</span></strong> {{ item.updated_at }}</p>
+      {% endif %}
         <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Location:</span></strong> {{ item.location }}</p>
 
-        {% if item.description%}
+      {% if item.description%}
         <p class="text-gray-700"><strong class="text-gray-500"><span class="text-base text-gray-900 dark:text-white">Description:</span></strong> {{ item.description }}</p>
       {% endif %}
 
