@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+{% load menu %}
 
 {% block title %}Items{% endblock %}
 
@@ -37,27 +38,14 @@
   </ol>
 </nav>
 
-  <div class="pb-6 grid grid-cols-5 gap-4 bg-gray-100">
+  <div id="menu" class="pb-6 grid grid-cols-5 gap-4 bg-gray-100">
     <div class="col-span-1 w-64">
       <form action="{% url 'item:items' %}" method="get">
         <input name="query" class="w-full py-2 px-3 border rounded-xl ml-1 mt-4" type="text" value="{{ query }}" placeholder="Search something">
         <button class="mt-2 ml-2 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Search</button>
         </input>
       </form>
-        <hr class="my-3">
-        <p class="font-semibold ml-4">Categories:</p>
-        <ul>
-            {% for category in categories %}
-            <li class="w-32 px-2 ml-5 rounded-xl {% if category.id == category_id %} text-blue-500 bg-gray-200 {% endif %}">
-                <a class="hover:text-blue-500" href="{% url 'item:items' %}?query={{ query }}&category={{ category.id }}">{{ category.name }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-
-                <hr class="my-3">
-        <a href="{%url 'item:items' %}"><button type="button" class="ml-4 text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Clear filters</button></a>
-
-      </div>
+        {% menu %}
       <div class="col-span-4">
             <div class="grid grid-cols-5 gap-2">
         {% for item in items %}
