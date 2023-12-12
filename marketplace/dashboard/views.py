@@ -12,8 +12,8 @@ def index(request):
     })
 
 
-def vendor_detail(request, pk):
+def seller_detail(request, pk):
     user = User.objects.get(pk=pk)
-    return render(request, 'dashboard/vendor_detail.html', {
+    return render(request, 'dashboard/seller_detail.html', {
         'user': user,
     })

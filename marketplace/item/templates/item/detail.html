@@ -41,10 +41,12 @@
   <div class="p-6 bg-gray-100 rounded-xl">
       <h1 class="mb-6 text-3xl">{{ item.name }}</h1>
         <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Price:</span></strong> {{ item.price|floatformat:0 }} PLN</p>
-        <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Seller:</span></strong><a href="{% url 'vendor_detail' item.user.id %}"> {{ item.created_by.username }}</p></a>
-        <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Date published:</span></strong> {{ item.created_at }}</p>
+        <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Seller:</span></strong><a class="text-blue-500" href="{% url 'dashboard:seller_detail' item.created_by.id %}"> {{ item.created_by.username }}</a></p>
+      {% for item in categories %}
 
-        <a href="{% url 'item:items' %}?query={{ query }}&category={{ item.category.id }}"><p class="text-blue-500"><strong><span class="text-base text-gray-900 dark:text-white">Category:</span></strong> {{ item.category }}</p></a>
+      <p class="text-blue-500"><strong><span class="text-base text-gray-900 dark:text-white">Category:</span></strong><a href="{% url 'item:items' item.category.slug %}"> {{ item.category.name }} </a></p>
+       {% endfor %}
+        <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Date published:</span></strong> {{ item.created_at }}</p>
 
       {% if item.updated_at%}
         <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Date updated:</span></strong> {{ item.updated_at }}</p>
