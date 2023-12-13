@@ -24,6 +24,7 @@ def items(request):
         'category_id': int(category_id),
     })
 
+
 def category_detail(request, slug):
     category = get_object_or_404(Category, slug=slug)
     items = category.items.all()
@@ -47,13 +48,11 @@ def detail(request, category_slug, slug):
 def new(request):
     if request.method == "POST":
         form = NewItemForm(request.POST, request.FILES)
-
         if form.is_valid():
             item = form.save(commit=False)
             item.created_by = request.user
             item.save()
-
-            return redirect('item:detail', slug=item.slug)
+            return redirect('item:detail', category_slug=item.category.slug, slug=item.slug)
     else:
         form = NewItemForm()
 
@@ -66,14 +65,11 @@ def new(request):
 @login_required()
 def edit(request, slug):
     item = get_object_or_404(Item, slug=slug, created_by=request.user)
-
     if request.method == "POST":
         form = EditItemForm(request.POST, request.FILES, instance=item)
-
         if form.is_valid():
             form.save()
-
-            return redirect('item:detail', slug=item.slug)
+            return redirect('item:detail', category_slug=item.category.slug, slug=item.slug)
     else:
         form = EditItemForm(instance=item)
 
@@ -81,7 +77,6 @@ def edit(request, slug):
         'form': form,
         'title': 'Edit item',
     })
-
 
 
 @login_required
