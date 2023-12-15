@@ -12,15 +12,13 @@
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
         <title>{% block title %} tessst {% endblock %} | Race-Marketplace</title>
             <script>
-
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
-        });
-        calendar.render();
-      });
-
+              document.addEventListener('DOMContentLoaded', function() {
+                var calendarEl = document.getElementById('calendar');
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                  initialView: 'dayGridMonth'
+                });
+                calendar.render();
+              });
     </script>
     </head>
     <body>
@@ -28,6 +26,7 @@
         <nav class="py-6 px-6 flex justify-between items-center border-b border-gray-200">
             <a href="/" class="font-normal text-gray-500 md:text-lg lg:text-xl dark:text-gray-400"><span class="text-red-600">Race</span>-Marketplace.pl</a>
             <div class="space-x-2">
+                <a href="{% url 'events' %}" class="text-base font-semibold hover:text-gray-500">Calendar</a>
                 <a href="{% url 'item:items' %}" class="text-base mr-6 font-semibold hover:text-gray-500">Marketplace</a>
                 {% if request.user.is_authenticated %}
                 <a href="{% url 'conversation:inbox' %}" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Messages</a>
@@ -41,7 +40,6 @@
         </header>
 
         <div class="px-6 py-6">
-
             {% block content %}
             {% endblock %}
         </div>

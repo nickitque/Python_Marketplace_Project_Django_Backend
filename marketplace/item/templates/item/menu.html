@@ -1,6 +1,6 @@
 
         <hr class="my-3">
-        <p class="font-semibold ml-4">Brands:</p>
+        <p class="font-semibold ml-4">Бренды:</p>
         <ul>
             {% for category in categories %}
             {% if not category.children.all %}
@@ -13,7 +13,7 @@
         </ul>
 
         <hr class="my-3">
-        <p class="font-semibold ml-4">Categories:</p>
+        <p class="font-semibold ml-4">Категории:</p>
         <ul>
             {% for category in categories %}
             {% if category.children.all %}
