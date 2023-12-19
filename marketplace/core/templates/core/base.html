@@ -19,8 +19,8 @@
                 <a href="{% url 'dashboard:index' %}" id="dashboard_btn_header" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-ms rounded-lg text-xs px-3 py-2 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"><span class="bg-blue-100 text-blue-800 text-xs font-semibold me-2 px-1 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">{{ user.get_username }}</span> Аккаунт </a></div>
 
                 {% else %}
-                <a href="{% url 'core:signup' %}" class="px-4 py-2 text-lg font-semibold text-sm bg-teal-500 text-white rounded-xl hover:bg-teal-700">Регистрация</a>
-                <a href="{% url 'core:login' %}" class="px-4 py-1.5 text-lg font-semibold text-sm bg-teal-600 text-white rounded-xl hover:bg-teal-700">Вход</a>
+                <a href="{% url 'core:signup' %}" id="signup_btn_header" class="px-4 py-2 text-lg font-semibold text-sm bg-teal-500 text-white rounded-xl hover:bg-teal-700">Регистрация</a>
+                <a href="{% url 'core:login' %}" id="login_btn_header" class="px-4 py-1.5 text-lg font-semibold text-sm bg-teal-600 text-white rounded-xl hover:bg-teal-700">Вход</a>
                 {% endif %}
         </nav>
         </header>
