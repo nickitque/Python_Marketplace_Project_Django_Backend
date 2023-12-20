@@ -26,11 +26,13 @@ def items(request):
 
 
 def category_detail(request, slug):
+    categories = Category.objects.all()
     category = get_object_or_404(Category, slug=slug)
     items = category.items.all()
     return render(request, 'item/category_detail.html', {
         'category': category,
         'items': items,
+        'categories': categories,
     })
 
 
