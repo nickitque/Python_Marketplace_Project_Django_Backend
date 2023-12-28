@@ -4,8 +4,6 @@ from django.utils.text import slugify
 import time
 
 
-
-
 class Category(models.Model):
     parent = models.ForeignKey('self', related_name='children', on_delete=models.CASCADE, blank=True, null=True)
     name = models.CharField(max_length=255)
@@ -60,3 +58,7 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Cars(models.Model):
+    pass
