@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'dashboard',
     'conversation',
     'events',
+    'blog',
 ]
 
 MIDDLEWARE = [
