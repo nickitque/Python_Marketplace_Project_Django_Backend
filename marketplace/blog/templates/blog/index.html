@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% block page_title %}
-    <h2>Blog Posts</h2>
-{% endblock page_title %}
 
-{% block page_content %}
+{% extends 'core/base.html' %}
+
+{% block title %} Dashboard {% endblock %}
+{% block content %}
     {% block posts %}
         {% for post in posts %}
             <h3><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h3>
@@ -24,6 +17,4 @@
             <p>{{ post.body | slice:":400" }}...</p>
         {% endfor %}
     {% endblock posts %}
-{% endblock page_content %}
-</body>
-</html>
+{% endblock %}
