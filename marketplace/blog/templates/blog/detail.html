@@ -5,7 +5,9 @@
 {% block page_title %}
 <div class="container mx-auto">
     <h2 class="text-4xl font-bold dark:text-white">{{ post.title }}</h2>
+
 {% endblock page_title %}
+                <img class="h-80 max-w-lg" src="{{ post.image_url|default_if_none:'/media/item_images/default.png' }}">
 
 {% block page_content %}
 
@@ -21,3 +23,4 @@
 </div>
 {% endblock page_content %}
 {% endblock %}
+

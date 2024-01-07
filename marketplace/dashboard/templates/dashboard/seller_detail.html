@@ -2,11 +2,10 @@
 
 {% block title %} {% firstof user.get_full_name user.username %} {% endblock %}
 {% block content %}
-<p>{% firstof user.get_full_name user.username %}</p>
 
 <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-    <h2 class="mb-12 text-2xl text-center">Here is items of {{ user.get_username }}</h2>
-    <div class="grid grid-cols-4 gap-3">
+    <h2 class="mb-12 text-2xl text-center">Другие товары от {{ user.get_username }}:</h2>
+    <div class="grid grid-cols-5 gap-3">
         {% for item in user.items.all %}
         <div>
             <a href="{% url 'item:detail' item.category.slug item.slug %}">
@@ -14,7 +13,7 @@
                     <img class="h-44 w-full object-cover" src="{{ item.image_url|default_if_none:'/media/item_images/default.png' }}" alt="">
                 </div>
                 <div class="p-6 bg-white rounded-b-xl">
-                    <h2 class="text-2xl">{{ item.name }}</h2>
+                    <h2 class="text-xl">{{ item.name }}</h2>
                     <p class="text-gray-500">Price: {{ item.price }} PLN</p>
                 </div>
             </a>

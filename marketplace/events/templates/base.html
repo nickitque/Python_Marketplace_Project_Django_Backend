@@ -27,6 +27,7 @@
         <nav class="py-6 px-6 flex justify-between items-center border-b border-gray-200">
             <a href="/" class="font-normal text-gray-500 md:text-lg lg:text-xl dark:text-gray-400"><span class="text-red-600">Race</span>-Marketplace.by</a>
             <div class="space-x-2">
+                <a href="{% url 'core:about' %}" id="about_us_btn_header" class="text-base font-semibold hover:text-gray-500">О нас</a>
                 <a href="{% url 'blog:blog_index' %}" id="blog_btn_header" class="text-base font-semibold hover:text-gray-500">Блог</a>
                 <a href="{% url 'events' %}" class="text-base font-semibold hover:text-gray-500">Календарь</a>
                 <a href="{% url 'item:items' %}" class="text-base mr-6 font-semibold hover:text-gray-500">Маркетплейс</a>
