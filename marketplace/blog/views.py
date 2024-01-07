@@ -32,8 +32,13 @@ def blogpost_detail(request, slug):
     return render(request, "blog/detail.html", context)
 
 
-# class PostLikeRedirect(RedirectView):
-#     def get_redirect_url(self, *args, **kwargs):
-#         pk = self.kwargs.get("pk")
-#         obj = Post.objects.get(pk=pk)
-#         return obj.get_absolute_url()
+class PostLikeRedirect(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        slug = self.kwargs.get("slug")
+        print(slug)
+        obj = Post.objects.get(slug=slug)
+        url_ = obj.get_absolute_url()
+        user = self.request.user
+        if user.is_authenticated:
+            obj.likes.add(user)
+        return url_

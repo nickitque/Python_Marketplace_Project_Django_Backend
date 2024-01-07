@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.shortcuts import redirect
 
 
 class Category(models.Model):
@@ -22,11 +23,13 @@ class Post(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
     categories = models.ManyToManyField("Category", related_name="posts")
 
-
     @property
     def image_url(self):
         if self.image and hasattr(self.image, 'url'):
             return self.image.url
+
+    def get_absolute_url(self):
+        return f"/blog/post/{self.slug}"
 
     def __str__(self):
         return self.title
@@ -40,4 +43,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.author} on '{self.post}'"
-
