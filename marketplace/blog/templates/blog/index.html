@@ -1,7 +1,7 @@
 
 {% extends 'core/base.html' %}
 
-{% block title %} Dashboard {% endblock %}
+{% block title %} Blog {% endblock %}
 {% block content %}
 
 
@@ -88,10 +88,10 @@
 
             <div class="ml-56 container mx-auto">
 
-            <h3 class="text-4xl font-bold dark:text-white"><a href="{% url 'blog:blog_detail' post.pk %}">{{ post.title }}</a></h3>
+            <h3 class="text-4xl font-bold dark:text-white"><a href="{% url 'blog:blogpost_detail' post.slug %}">{{ post.title }}</a></h3>
                 <img class="max-h-80 max-w-lg" src="{{ post.image_url|default_if_none:'/media/item_images/default.png' }}">
             <div><p class="mb-3 text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                Опубликовано: {{ post.created_on.date }} | Категория:
+                Опубликовано: {{ post.created_on.date }}, likes: {{ post.likes.count }} | Категория:
                 {% for category in post.categories.all %}
                     <a class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline" href="{% url 'blog:blog_category' category.name %}">
                         {{ category.name }}

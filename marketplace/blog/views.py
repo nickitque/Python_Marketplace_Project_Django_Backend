@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import RedirectView
 from .models import Post, Comment
 
 
@@ -20,8 +21,8 @@ def blog_category(request, category):
     return render(request, "blog/category.html", context)
 
 
-def blog_detail(request, pk):
-    post = Post.objects.get(pk=pk)
+def blogpost_detail(request, slug):
+    post = Post.objects.get(slug=slug)
     comments = Comment.objects.filter(post=post)
     context = {
         "post": post,
@@ -29,3 +30,10 @@ def blog_detail(request, pk):
     }
 
     return render(request, "blog/detail.html", context)
+
+
+# class PostLikeRedirect(RedirectView):
+#     def get_redirect_url(self, *args, **kwargs):
+#         pk = self.kwargs.get("pk")
+#         obj = Post.objects.get(pk=pk)
+#         return obj.get_absolute_url()

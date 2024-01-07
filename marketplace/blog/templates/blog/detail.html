@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %}
 
-{% block title %} Dashboard {% endblock %}
+{% block title %} {{ post.title }} {% endblock %}
 {% block content %}
 {% block page_title %}
 <div class="container mx-auto">
@@ -12,7 +12,7 @@
 {% block page_content %}
 
     <p class="mb-3 text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        {{ post.created_on.date }} | Categories:
+        {{ post.created_on.date }}, likes: {{ post.likes.count }} | Categories:
         {% for category in post.categories.all %}
             <a class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline" href="{% url 'blog:blog_category' category.name %}">
                 {{ category.name }}

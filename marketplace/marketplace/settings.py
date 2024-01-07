@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'conversation',
     'events',
     'blog',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
