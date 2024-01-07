@@ -12,6 +12,7 @@
         <nav class="py-6 px-6 flex justify-between items-center border-b border-gray-200">
             <a href="/" class="font-normal text-gray-500 md:text-lg lg:text-xl dark:text-gray-400"><span class="text-red-600">Race</span>-Marketplace.by</a>
             <div class="space-x-2">
+                <a href="{% url 'core:about' %}" id="about_us_btn_header" class="text-base font-semibold hover:text-gray-500">О нас</a>
                 <a href="{% url 'blog:blog_index' %}" id="blog_btn_header" class="text-base font-semibold hover:text-gray-500">Блог</a>
                 <a href="{% url 'events' %}" id="calendar_btn_header" class="text-base font-semibold hover:text-gray-500">Календарь</a>
                 <a href="{% url 'item:items' %}" id="marketplace_btn_header" class="text-base font-semibold hover:text-gray-500">Маркетплейс</a>
@@ -20,8 +21,8 @@
                 <a href="{% url 'dashboard:index' %}" id="dashboard_btn_header" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-ms rounded-lg text-xs px-3 py-2 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"> Аккаунт  <span class="bg-blue-100 text-blue-800 text-xs font-semibold me-2 px-1 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">{{ user.get_username }}</span></a></div>
 
                 {% else %}
-                <a href="{% url 'core:signup' %}" id="signup_btn_header" class="px-4 py-1.5 text-lg font-semibold text-sm bg-teal-600 text-white rounded-xl hover:bg-teal-700">Регистрация</a>
-                <a href="{% url 'core:login' %}" id="login_btn_header" class="px-4 py-1.5 text-lg font-semibold text-sm bg-teal-600 text-white rounded-xl hover:bg-teal-700">Вход</a>
+                <a href="{% url 'core:login' %}" id="login_btn_header" class="py-2 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Вход</a>
+                <a href="{% url 'core:signup' %}" id="signup_btn_header" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Регистрация</a>
                 {% endif %}
         </nav>
         </header>
@@ -30,22 +31,22 @@
             {% endblock %}
         </div>
 
+    <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
 <footer class="bg-white dark:bg-gray-900">
     <div class="mx-auto w-full p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
             <a href="/" class="font-normal text-gray-500 md:text-lg lg:text-xl dark:text-gray-400"><span class="text-red-600">Race</span>-Marketplace.by</a>
-
           </div>
           <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
               <div>
-                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Инфо</h2>
                   <ul class="text-gray-500 dark:text-gray-400 font-medium">
                       <li class="mb-4">
-                          <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
+                          <a href="https://flowbite.com/" class="hover:underline">О Нас</a>
                       </li>
                       <li>
-                          <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
+                          <a href="https://tailwindcss.com/" class="hover:underline">Контакты</a>
                       </li>
                   </ul>
               </div>
@@ -73,6 +74,7 @@
               </div>
           </div>
       </div>
+
       <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
       <div class="sm:flex sm:items-center sm:justify-between">
           <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="#" class="hover:underline">Race-Marketplace™</a>. All Rights Reserved.

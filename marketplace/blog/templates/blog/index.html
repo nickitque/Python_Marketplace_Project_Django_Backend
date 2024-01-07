@@ -5,16 +5,19 @@
 {% block content %}
     {% block posts %}
         {% for post in posts %}
-            <h3><a href="{% url 'blog:blog_detail' post.pk %}">{{ post.title }}</a></h3>
-            <small>
+            <div class="container mx-auto">
+            <h3 class="text-4xl font-bold dark:text-white"><a href="{% url 'blog:blog_detail' post.pk %}">{{ post.title }}</a></h3>
+            <div><p class="mb-3 text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 {{ post.created_on.date }} | Categories:
                 {% for category in post.categories.all %}
-                    <a href="{% url 'blog:blog_category' category.name %}">
+                    <a class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline" href="{% url 'blog:blog_category' category.name %}">
                         {{ category.name }}
                     </a>
                 {% endfor %}
-            </small>
-            <p>{{ post.body | slice:":400" }}...</p>
+            </p>
+            </div>
+            <p>{{ post.body | safe | slice:":200" }}...</p>
+            </div>
         {% endfor %}
     {% endblock posts %}
 {% endblock %}
