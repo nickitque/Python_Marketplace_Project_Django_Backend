@@ -40,5 +40,8 @@ class PostLikeRedirect(RedirectView):
         url_ = obj.get_absolute_url()
         user = self.request.user
         if user.is_authenticated:
-            obj.likes.add(user)
+            if user in obj.likes.all():
+                obj.likes.remove(user)
+            else:
+                obj.likes.add(user)
         return url_

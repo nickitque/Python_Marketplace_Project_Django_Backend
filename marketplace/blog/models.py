@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from django.shortcuts import redirect
+from django.shortcuts import reverse
 
 
 class Category(models.Model):
@@ -29,7 +29,10 @@ class Post(models.Model):
             return self.image.url
 
     def get_absolute_url(self):
-        return f"/blog/post/{self.slug}"
+        return reverse("blog:blogpost_detail", kwargs={"slug": self.slug})
+
+    def get_like_url(self):
+        return reverse("blog:like-toggle", kwargs={"slug": self.slug})
 
     def __str__(self):
         return self.title
