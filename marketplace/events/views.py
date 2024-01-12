@@ -10,6 +10,7 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+
 def all_events(request):
     all_events = Events.objects.all()
     out = []
