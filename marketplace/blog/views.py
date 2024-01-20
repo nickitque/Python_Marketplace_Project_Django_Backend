@@ -32,7 +32,7 @@ def blogpost_detail(request, slug):
     return render(request, "blog/detail.html", context)
 
 
-class PostLikeRedirect(RedirectView):
+class PostLikeToggle(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         slug = self.kwargs.get("slug")
         print(slug)

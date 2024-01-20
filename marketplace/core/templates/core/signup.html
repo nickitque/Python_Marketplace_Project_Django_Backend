@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 
 
-{% block title %}Sign up{% endblock %}
+{% block title %}Регистрация{% endblock %}
 
 {% block content %}
 <div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl">
@@ -32,9 +32,9 @@
             {{ form.non_field_errors }}
         </div>
         {% endif %}
-        <button id="submit_btn" class="py-4 px-8 text-lg bg-teal-500 howver:bg-teal-700 rounded-xl text-white">
-            Submit
-        </button>
+        <div class="flex justify-center">
+            <button type="button" id="submit_btn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Регистрация</button>
+        </div>
     </form>
 </div>
 {% endblock %}

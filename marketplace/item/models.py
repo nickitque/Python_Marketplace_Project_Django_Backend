@@ -24,6 +24,7 @@ class Category(models.Model):
 
 
 class Location(models.Model):
+    region = models.CharField(max_length=255, default="Минская обл.")
     name = models.CharField(max_length=255)
 
     class Meta:
@@ -42,10 +43,10 @@ class Item(models.Model):
     price = models.FloatField()
     image = models.ImageField(upload_to='item_images', blank=True, null=True)
     is_sold = models.BooleanField(default=False)
-    created_by = models.ForeignKey(User, related_name='items', on_delete=models.CASCADE)
+    created_by = models.ForeignKey(User, related_name='created', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    location = models.ForeignKey(Location, related_name='items', on_delete=models.CASCADE, default=1)
+    location = models.ForeignKey(Location, related_name='locations', on_delete=models.CASCADE, default=1)
 
     @property
     def image_url(self):

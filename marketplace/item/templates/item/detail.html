@@ -61,11 +61,10 @@
   <div>
       <img src="{{ item.image_url|default_if_none:'/media/item_images/default.png' }}" class="rounded-xl" alt="">
 </div>
-  <div class="p-6 bg-gray-100 rounded-xl">
+  <div class="grid grid-cols-2 gap-3 p-6 bg-gray-100 rounded-xl">
+      <section>
       <h1 class="mb-6 text-3xl">{{ item.name }}</h1>
         <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Цена:</span></strong> {{ item.price|floatformat:0 }} BYN / {{ item.price|floatformat:0 }} $</p>
-        <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Продавец:</span></strong><a class="text-blue-500" href="{% url 'dashboard:seller_detail' item.created_by.id %}"> {{ item.created_by.username }}</a></p>
-
       <p class="text-blue-500"><strong><span class="text-base text-gray-900 dark:text-white">Категория:</span></strong><a href="{% url 'item:category_detail' item.category.slug %}"> {{ item.category.name }} </a></p>
         <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Дата публикации:</span></strong> {{ item.created_at }}</p>
 
@@ -77,6 +76,8 @@
       {% if item.description%}
         <p class="text-gray-700"><strong class="text-gray-500"><span class="text-base text-gray-900 dark:text-white">Описание:</span></strong> {{ item.description }}</p>
       {% endif %}
+        </section>
+      <section>
 
       {% if request.user == item.created_by %}
       <div class="mt-6 p-6 bg-white rounded-xl">
@@ -85,6 +86,7 @@
           <a href="{% url 'item:delete' item.slug %}" class="inline-block mt-2 px-3 py-1 text-sm font-semibold bg-red-500 text-white rounded-xl">Удалить</a>
       </div>
       {% else %}
+          <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Продавец:</span></strong><a class="text-blue-500" href="{% url 'dashboard:seller_detail' item.created_by.id %}"> {{ item.created_by.username }}</a></p>
 
       <a href="{% url 'conversation:new' item.id %}" class="inline-block mt-4 px-3 py-2 text-sm font-semibold
       bg-green-600 text-white rounded-xl hover:bg-green-800">Сообщение</a>
@@ -93,6 +95,7 @@
       {% endif %}
       </div>
 </div>
+</section>
 
 <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
     <h2 class="mb-12 text-2xl text-center">Похожие объявления:</h2>

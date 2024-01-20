@@ -6,15 +6,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
         <title>{% block title %} {% endblock %} | Race-Marketplace</title>
+        <link rel="icon" type="image/x-icon" href="/media/core_images/favicon_logo.png">
     </head>
     <body>
     <header>
         <nav class="py-6 px-6 flex justify-between items-center border-b border-gray-200">
             <a href="/" class="font-normal text-gray-500 md:text-lg lg:text-xl dark:text-gray-400"><span class="text-red-600">Race</span>-Marketplace.by</a>
             <div class="space-x-2">
-                <a href="{% url 'core:about' %}" id="about_us_btn_header" class="text-base font-semibold hover:text-gray-500">О нас</a>
-                <a href="{% url 'blog:blog_index' %}" id="blog_btn_header" class="text-base font-semibold hover:text-gray-500">Блог</a>
-                <a href="{% url 'events' %}" id="calendar_btn_header" class="text-base font-semibold hover:text-gray-500">Календарь</a>
+<!--                <a href="{% url 'core:about' %}" id="about_us_btn_header" class="text-base font-semibold hover:text-gray-500">О нас</a>-->
+<!--                <a href="{% url 'blog:blog_index' %}" id="blog_btn_header" class="text-base font-semibold hover:text-gray-500">Блог</a>-->
+<!--                <a href="{% url 'events' %}" id="calendar_btn_header" class="text-base font-semibold hover:text-gray-500">Календарь</a>-->
                 <a href="{% url 'item:items' %}" id="marketplace_btn_header" class="text-base font-semibold hover:text-gray-500">Маркетплейс</a>
                 {% if request.user.is_authenticated %}
                 <a href="{% url 'conversation:inbox' %}" id="messages_btn_header" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Сообщения</a>
@@ -42,22 +43,28 @@
               <div>
                   <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Инфо</h2>
                   <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                      <li class="mb-4">
-                          <a href="https://flowbite.com/" class="hover:underline">О Нас</a>
+                      <li class="mb-2">
+                          <a href="{% url 'core:about' %}" class="hover:underline">О Нас</a>
+                      </li>
+                      <li class="mb-2">
+                          <a href="{% url 'blog:blog_index' %}" class="hover:underline">Блог</a>
+                      </li>
+                      <li class="mb-2">
+                          <a href="{% url 'events' %}" class="hover:underline">Мероприятия</a>
                       </li>
                       <li>
-                          <a href="https://tailwindcss.com/" class="hover:underline">Контакты</a>
+                          <a href="{% url 'core:contact' %}" class="hover:underline">Контакты</a>
                       </li>
                   </ul>
               </div>
               <div>
-                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Соцсети</h2>
                   <ul class="text-gray-500 dark:text-gray-400 font-medium">
                       <li class="mb-4">
                           <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Instagram</a>
                       </li>
                       <li>
-                          <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
+                          <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Telegram</a>
                       </li>
                   </ul>
               </div>
@@ -77,7 +84,7 @@
 
       <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
       <div class="sm:flex sm:items-center sm:justify-between">
-          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="#" class="hover:underline">Race-Marketplace™</a>. All Rights Reserved.
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="#" class="hover:underline">Race-Marketplace™</a>. Все права зарегистрированы.
           </span>
           <div class="flex mt-4 sm:justify-center sm:mt-0">
               <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
