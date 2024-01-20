@@ -14,13 +14,13 @@
     <div class="grid grid-cols-5 gap-3">
         {% for item in items %}
         <div>
-            <a href="{% url 'item:detail' item.category.slug item.slug %}">
+            <a href="{% url 'item:detail' item.category.slug item.pk %}">
                 <div>
                     <img class="h-44 w-full object-cover" src="{{ item.image_url|default_if_none:'/media/item_images/default.png' }}" alt="">
                 </div>
                 <div class="p-6 bg-white rounded-b-xl">
                     <h2 class="text-xl">{{ item.name }}</h2>
-                    <p class="text-gray-500">Price: {{ item.price }} PLN</p>
+                    <p class="text-gray-500">Цена: {{ item.price|floatformat:0 }} BYN</p>
                 </div>
             </a>
         </div>

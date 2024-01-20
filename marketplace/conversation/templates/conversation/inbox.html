@@ -1,8 +1,8 @@
 {% extends 'core/base.html' %}
-{% block title %}Inbox{% endblock %}
+{% block title %}Сообщения{% endblock %}
 
 {% block content %}
-<h1 class="mb-6 text-3xl">Inbox</h1>
+<h1 class="mb-6 text-3xl">Сообщения</h1>
 <div class="max-w-[620px]">
     {% for conversation in conversations %}
     <a href="{% url 'conversation:detail' conversation.id %}">
@@ -21,10 +21,7 @@
             </div>
         </div>
     </a>
-
     {% endfor %}
 </div>
-
-
 
 {% endblock %}

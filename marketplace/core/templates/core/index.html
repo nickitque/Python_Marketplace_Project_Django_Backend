@@ -16,18 +16,18 @@
             </a>
         </div>
         <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-            <img src="/media/item_images/bmw_m4-removebg-preview.png" alt="mockup">
+            <img src="/media/item_images/bmw_m4-removebg-preview.png" alt="bmw m4">
         </div>
     </div>
 </section>
 </div>
 <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-    <h2 class="mb-10 text-2xl font-bold dark:text-white text-center">Новые объявления</h2>
+    <h2 class="mb-10 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl dark:text-white text-center">Новые объявления</h2>
 
     <div class="grid xl:grid-cols-5 gap-3 md:grid-cols-3 sm:grid-cols-1">
         {% for item in items %}
         <div>
-            <a href="{% url 'item:detail' item.category.slug item.slug %}">
+            <a href="{% url 'item:detail' item.category.slug item.pk %}">
                 <div>
                     <img class="h-52 w-full object-cover rounded-t-xl" src="{{ item.image_url|default_if_none:'/media/item_images/default.png' }}" alt="{{ item.name }}">
                 </div>
@@ -43,14 +43,14 @@
 </div>
 
 <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-    <h2 class="mb-10 text-2xl font-bold dark:text-white text-center">Популярные категории</h2>
-    <div class="grid 2xl:grid-cols-8 gap-3 md:grid-cols-3 sm:grid-cols-1">
+    <h2 class="mb-6 text-2xl font-bold dark:text-white text-center">Популярные категории</h2>
+    <div class="grid 2xl:grid-cols-6 gap-3 md:grid-cols-6 sm:grid-cols-1">
         {% for category in categories %}
                     <div>
             <a href="{% url 'item:items' %}?query={{ query }}&category={{ category.id }}">
-                <div class="p-6  bg-white rounded-xl">
-                    <h2 class="text-xl">{{ category.name }}</h2>
-                    <p class="text-gray-500">{{ category.items.count }} items</p>
+                <div class="p-2  bg-white rounded-xl">
+                    <h2 class="text-base">{{ category.name }}</h2>
+                    <p class="text-sm text-gray-500">Объявлений: {{ category.items.count }}</p>
                 </div>
             </a>
         </div>
@@ -59,7 +59,7 @@
     </div>
 
 <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-    <h2 class="mb-10 text-2xl font-bold dark:text-white text-center">Последние новости</h2>
+    <h2 class="mb-10 text-2xl font-bold dark:text-white text-center">Последние новости:</h2>
 
     <div class="grid xl:grid-cols-5 gap-3 md:grid-cols-3 sm:grid-cols-1">
         {% for post in posts %}

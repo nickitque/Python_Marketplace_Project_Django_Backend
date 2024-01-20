@@ -64,7 +64,7 @@
   <div class="grid grid-cols-2 gap-3 p-6 bg-gray-100 rounded-xl">
       <section>
       <h1 class="mb-6 text-3xl">{{ item.name }}</h1>
-        <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Цена:</span></strong> {{ item.price|floatformat:0 }} BYN / {{ item.price|floatformat:0 }} $</p>
+        <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Цена:</span></strong> {{ item.price|floatformat:0 }} BYN / {{ item.price|floatformat:0  }} $</p>
       <p class="text-blue-500"><strong><span class="text-base text-gray-900 dark:text-white">Категория:</span></strong><a href="{% url 'item:category_detail' item.category.slug %}"> {{ item.category.name }} </a></p>
         <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Дата публикации:</span></strong> {{ item.created_at }}</p>
 
@@ -88,8 +88,10 @@
       {% else %}
           <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Продавец:</span></strong><a class="text-blue-500" href="{% url 'dashboard:seller_detail' item.created_by.id %}"> {{ item.created_by.username }}</a></p>
 
-      <a href="{% url 'conversation:new' item.id %}" class="inline-block mt-4 px-3 py-2 text-sm font-semibold
-      bg-green-600 text-white rounded-xl hover:bg-green-800">Сообщение</a>
+
+          <a href="{% url 'conversation:new' item.id %}">
+              <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800">
+        <span class="relative px-5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">Сообщение</span></button></a>
       <a href="#" class="inline-block mt-4 px-3 py-2 text-sm font-semibold
       bg-teal-500 text-white rounded-xl hover:bg-teal-700">Номер телефона</a>
       {% endif %}
@@ -102,7 +104,7 @@
     <div class="grid grid-cols-5 gap-3">
         {% for item in related_items %}
         <div>
-            <a href="{% url 'item:detail' item.category.slug item.slug %}">
+            <a href="{% url 'item:detail' item.category.slug item.pk %}">
                 <div>
                     <img src="{{ item.image_url|default_if_none:'/media/item_images/default.png' }}" alt="" class="h-36 w-full object-cover rounded-t-xl">
                 </div>

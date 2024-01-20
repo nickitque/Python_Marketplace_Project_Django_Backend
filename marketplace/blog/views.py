@@ -5,6 +5,7 @@ from .models import Post, Comment
 
 def blog_index(request):
     posts = Post.objects.all().order_by("-created_on")
+
     return render(request, "blog/index.html", {
         "posts": posts,
     })
