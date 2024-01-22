@@ -8,6 +8,6 @@ urlpatterns = [
     path('new.html/', views.new, name='new'),
     path('<slug:slug>/', views.category_detail, name='category_detail'),
     path('<slug:category_slug>/<int:pk>/', views.detail, name='detail'),
-    path('<slug:slug>/delete', views.delete, name='delete'),
-    path('<slug:slug>/edit', views.edit, name='edit'),
+    path('<int:pk>/delete', views.delete, name='delete'),
+    path('<int:pk>/edit', views.edit, name='edit'),
 ]

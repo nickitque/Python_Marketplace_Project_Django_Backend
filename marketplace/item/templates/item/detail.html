@@ -82,8 +82,8 @@
       {% if request.user == item.created_by %}
       <div class="mt-6 p-6 bg-white rounded-xl">
           <p>Это Ваше объявление, {{ user.get_username }}</p>
-          <a href="{% url 'item:edit' item.slug %}" class="inline-block mt-2 px-4 py-1 text-sm font-semibold bg-teal-500 text-white rounded-xl">Редактировать</a>
-          <a href="{% url 'item:delete' item.slug %}" class="inline-block mt-2 px-3 py-1 text-sm font-semibold bg-red-500 text-white rounded-xl">Удалить</a>
+          <a href="{% url 'item:edit' item.pk %}" class="inline-block mt-2 px-4 py-1 text-sm font-semibold bg-teal-500 text-white rounded-xl">Редактировать</a>
+          <a href="{% url 'item:delete' item.pk %}" class="inline-block mt-2 px-3 py-1 text-sm font-semibold bg-red-500 text-white rounded-xl">Удалить</a>
       </div>
       {% else %}
           <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white">Продавец:</span></strong><a class="text-blue-500" href="{% url 'dashboard:seller_detail' item.created_by.id %}"> {{ item.created_by.username }}</a></p>
