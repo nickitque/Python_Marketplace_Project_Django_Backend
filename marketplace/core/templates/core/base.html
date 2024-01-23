@@ -27,6 +27,11 @@
                 {% endif %}
         </nav>
         </header>
+     {% if messages %}
+     {% for message in messages %}
+    <div class="flex items-center"><h2>{{ message }}</h2></div>
+     {% endfor %}
+ {% endif %}
         <div class="px-6 py-6">
             {% block content %}
             {% endblock %}

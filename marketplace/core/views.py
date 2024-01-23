@@ -3,6 +3,7 @@ from item.models import Category, Item
 from blog.models import Post
 from .forms import SignUpForm
 from django.contrib.auth import logout
+from django.contrib import messages
 
 
 def logout_view(request):
@@ -33,7 +34,9 @@ def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
+            username = form.cleaned_data.get('username')
             form.save()
+            messages.success(request, f'Добро пожаловать, {username}, Ваш аккаунт успешно создан!')
             return redirect('/login/')
 
     else:

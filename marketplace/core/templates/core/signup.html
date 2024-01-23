@@ -9,19 +9,19 @@
     <form id="registration_form" method="post" action=".">
         {% csrf_token %}
         <div class="mb-3">
-            <label class="inline-block mb-2"> Username:</label><br>
+            <label class="inline-block mb-2">Никнейм:</label><br>
             {{ form.username }}
             </div>
         <div class="mb-3">
-            <label class="inline-block mb-2"> Email:</label><br>
+            <label class="inline-block mb-2">Email:</label><br>
             {{ form.email }}
             </div>
         <div class="mb-3">
-            <label class="inline-block mb-2">Password:</label><br>
+            <label class="inline-block mb-2">Имейл:</label><br>
             {{ form.password1 }}
             </div>
         <div class="mb-3">
-            <label class="inline-block mb-2">Repeat Password:</label><br>
+            <label class="inline-block mb-2">Повторите пароль:</label><br>
             {{ form.password2 }}
             </div>
         {% if form.errors or form.non_field_errors %}
