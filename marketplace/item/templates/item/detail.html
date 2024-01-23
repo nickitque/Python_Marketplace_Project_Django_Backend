@@ -32,7 +32,7 @@
                             <a href="{% url 'item:category_detail' item.category.slug %}" class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white"> {{ item.category.parent.name }}</a>
 
       {% else %}
-                  <a href="{% url 'item:category_detail' item.category.slug %}" class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white"> {{ item.category.parent.name }}</a>
+                  <a href="{% url 'item:category_detail' item.category.parent.slug %}" class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white"> {{ item.category.parent.name }}</a>
 
           {% endif %}
       </div>
