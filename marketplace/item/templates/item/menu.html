@@ -1,3 +1,11 @@
+          <div id="menu" class="pb-6 grid grid-cols-5 gap-4 bg-gray-100">
+    <div class="col-span-1 w-64">
+      <form action="{% url 'item:items' %}" method="get">
+        <input name="query" class="w-36 py-2 px-2 border rounded-xl ml-1 mt-4" type="text" value="{{ query }}" placeholder="Поиск">
+        <button class=" text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-xl text-sm px-1 py-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Искать</button>
+        </input>
+
+      </form>
         <hr class="my-3">
         <p class="font-semibold ml-4">Категории:</p>
         <ul>
@@ -14,9 +22,9 @@
         <ul>
             {% for category in categories %}
             {% if not category.children.all %}
-            {% if category.parent.name == "Cars" %}
+            {% if category.parent.name == category %}
             <li class="w-32 px-2 ml-5 rounded-xl {% if category.id == category_id %} text-blue-500 bg-gray-200 {% endif %}">
-                <a class="hover:text-blue-500" href="{% url 'item:items' %}?query={{ query }}&category={{ category.id }}">{{ category.name }}</a>
+                <a class="hover:text-blue-500" href="{% url 'item:items' %}">{{ category.name }}</a>
             </li>
             {% endif %}
             {% endif %}
