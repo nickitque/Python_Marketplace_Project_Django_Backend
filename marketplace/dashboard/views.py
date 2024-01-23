@@ -14,6 +14,9 @@ def index(request):
 
 def seller_detail(request, pk):
     user = User.objects.get(pk=pk)
+    items = Item.objects.filter(created_by=user.id)
     return render(request, 'dashboard/seller_detail.html', {
         'user': user,
+        'items': items,
+
     })
