@@ -47,9 +47,10 @@
                 <div>
                     <img class="h-32 w-full object-cover rounded-t-xl" src="{{ item.image_url|default_if_none:'/media/item_images/default.png' }}" alt="">
                 </div>
-                <div class="p-6 bg-white rounded-b-xl">
+                <div class="p-4 bg-white rounded-b-xl">
                     <h3 class="text-base text-gray-900 dark:text-white">{{ item.name }}</h3>
-                    <p class="text-sm text-gray-900 font-extralight dark:text-white">{{ item.price|floatformat:0 }} BYN, <a class="text-xs">{{ item.location }}</a></p>
+                    <p class="text-sm text-gray-900 font-extralight dark:text-white">{{ item.price|floatformat:0 }} BYN | {{ item.price|floatformat:0 }} USD</p>
+                    <p class="text-xs">Минск, {{ item.location }}</p>
                 </div>
             </a>
         </div>
