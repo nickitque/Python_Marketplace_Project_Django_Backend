@@ -33,8 +33,9 @@
                 </div>
 
                 <div class="p-6 bg-white rounded-b-xl">
-                    <h2 class="text-base font-medium text-gray-900 dark:text-white">{{ item.name }}</h2>
-                    <p class="mt-1 text-gray-500">{{ item.price|floatformat:0 }} BYN</p>
+                    <h3 class="text-base text-gray-900 dark:text-white">{{ item.name }}</h3>
+                    <p class="text-base text-gray-900 font-extralight dark:text-white">{{ item.price|floatformat:0 }} BYN | {{ item.price|floatformat:0 }} USD</p>
+                    <p class="text-sm">Минск, {{ item.location }}</p>
                 </div>
             </a>
         </div>
