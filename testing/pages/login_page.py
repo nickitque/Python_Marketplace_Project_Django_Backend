@@ -18,6 +18,7 @@ class LoginPage(BasePage):
         self.browser.find_element(*LoginPageLocators.USERNAME_FIELD).send_keys(name)
         self.browser.find_element(*LoginPageLocators.PASSWORD_FIELD).send_keys(password)
         self.browser.find_element(*LoginPageLocators.SUBMIT_BTN).click()
+        assert self.browser.current_url == "http://127.0.0.1:8000/"
 
 
 class RegistrationPage(BasePage):
