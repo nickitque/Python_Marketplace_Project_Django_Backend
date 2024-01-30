@@ -2,5 +2,16 @@
   "dependencies": {
     "fullcalendar": "^6.1.10",
     "tailwindcss": "^3.4.1"
-  }
+  },
+  "name": "marketplace",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tailwind build src/style.css -o public/style.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
