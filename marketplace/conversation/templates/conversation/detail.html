@@ -2,28 +2,89 @@
 {% block title %}Диалог{% endblock %}
 
 {% block content %}
-<h1 class="mb-6 text-3xl">Диалог</h1>
-    <div class="space-y-4">
-            {% for message in conversation.messages.all %}
-   <div class="flex flex-col w-full max-w-[520px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700 {% if message.created_by == request.user %} {% else %} bg-gray-300 {% endif %}">
-      <div class="flex items-center space-x-2 rtl:space-x-reverse">
-          <img class="w-8 h-8 rounded-full" src="/test/" alt="">
-         <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ message.created_by.username }}</span>
-         <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ message.created_at}}</span>
-      </div>
-      <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">{{ message.content }}</p>
-   </div>
-                {% endfor %}
 
-            <div class="flex flex-col w-full max-w-[520px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
+<div class="flex">
+    <!-- Sidebar -->
+    <div class="bg-indigo-900 w-64">
+        <div class="bg-indigo-800">
+            <div class="text-gray-200 p-5 text-xl font-bold">Панель управления</div>
+        </div>
+        <div>
+            <div class="p-5 text-gray-200 font-bold text-xs">Страницы</div>
+        </div>
+        <div class="flex m-5 mt-2">
+            <div>
+                <img class="w-5 h-5" src="/media/dashboard_images/plus.png" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100">
+                <a href="{% url 'item:new' %}">Новое объявление</a></div>
+        </div>
+        <div class="flex m-5 mt-2">
+            <div>
+                <img class="w-5 h-5" src="/media/dashboard_images/tyre.png" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100">Мои объявления (5 {{ user.items.number }})</div>
+        </div>
+            <div class="flex m-5 mt-2">
+            <div>
+                <img class="w-5 h-5" src="/media/dashboard_images/fav.png" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100">Избранное</div>
+        </div>
+        <div class="flex m-5 mt-2">
+            <div>
+                <img class="w-5 h-5" src="/media/dashboard_images/msg.png" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100"><a href="{% url 'conversation:inbox' %}">Сообщения</a></div>
+        </div>
+        <div class="flex m-5 mt-2">
+            <div>
+                <img class="w-5 h-5" src="/media/dashboard_images/account.png" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100"><a href="#">Аккаунт</a></div>
+        </div>
+    </div>
+<!-- Sidebar end -->
+
+<div class="ml-5">
+    {% for conversation in conversations %}
+    <a href="{% url 'conversation:detail' conversation.id %}">
+        <div class="p-6 mb-4 flex {% if message.created_by == request.user %} bg-blue-100 {% else %} bg-gray-100 {% endif %} rounded-xl">
+            <div class="pr-6">
+                <div>
+                    <span class="inline-flex items-baseline">
+                    <img src="{{ conversation.item.image.url }}" class="w-20 mr-3 rounded-xl" alt="">
+                    {% for member in conversation.members.all %}
+                        {% if member != request.user%}
+                        <p class="mb-4"><strong>{{ member.username }}</strong> | {{ conversation.modified_at }}</p></span>
+                            <p>{{ conversation.item.name }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+    <div class="ml-5">
+    {% for message in conversation.messages.all %}
+        <div class="flex flex-col w-full max-w-[520px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700 {% if message.created_by == request.user %} {% else %} bg-gray-300 {% endif %}">
+          <div class="flex items-center space-x-2 rtl:space-x-reverse">
+              <img class="w-8 h-8 rounded-full" src="/test/" alt="">
+              <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ message.created_by.username }}</span>
+              <span class="text-sm font-normal text-gray-500 dark:text-gray-400">| {{ message.created_at}}</span>
+          </div>
+          <p class="ml-4 text-sm font-normal py-2.5 text-gray-900 dark:text-white">{{ message.content }}</p>
+        </div>
+    {% endfor %}
+
+    <div class="flex flex-col w-full max-w-[520px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
     <form method="post" action='.' class="mt-6">
     {% csrf_token %}
 
     {{ form.as_p }}
-        <button class="py-4 px-8 text-lg bg-teal-500 howver:bg-teal-700 rounded-xl text-white">
-            Send
-        </button>
-
+        <button class="py-4 px-8 text-lg bg-teal-500">Отправить</button>
 </form>
 </div>
     </div>

@@ -49,7 +49,7 @@ def inbox(request):
 @login_required
 def detail(request, pk):
     conversation = Conversation.objects.filter(members__in=[request.user.id]).get(pk=pk)
-
+    conversations = Conversation.objects.filter(members__in=[request.user.id])
     if request.method == 'POST':
         form = ConversationMessageForm(request.POST)
 
@@ -66,4 +66,5 @@ def detail(request, pk):
     return render(request, 'conversation/detail.html', {
         'conversation': conversation,
         'form': form,
+        'conversations': conversations,
     })
