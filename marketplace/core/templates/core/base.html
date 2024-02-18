@@ -7,12 +7,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static 'core/styles.css' %}">
         <title>{% block title %} {% endblock %} | Race-Marketplace</title>
-        <link rel="icon" type="image/x-icon" href="/media/core_images/favicon_logo.png">
+        <link rel="icon" type="image/x-icon" href="/media/core_images/race.png">
     </head>
-    <body>
-    <header>
+     <header class="bg-white dark:bg-gray-900">
         <nav class="py-6 px-6 flex justify-between items-center border-b border-gray-200">
-            <a href="/" class="font-normal text-gray-500 md:text-lg lg:text-xl dark:text-gray-400"><span class="text-red-600">Race</span>-Marketplace.by</a>
+            <a class="flex" href="/">
+                    <img class="h-8 mr-2" src="/media/core_images/race.png" alt="">
+                    <span class="font-normal text-gray-500 md:text-lg lg:text-xl dark:text-gray-400"><span class="text-red-600">Race</span>-Marketplace.by</span>
+                </a>
             <div class="space-x-2">
 <!--                <a href="{% url 'core:about' %}" id="about_us_btn_header" class="text-base font-semibold hover:text-gray-500">О нас</a>-->
 <!--                <a href="{% url 'blog:blog_index' %}" id="blog_btn_header" class="text-base font-semibold hover:text-gray-500">Блог</a>-->
@@ -28,6 +30,7 @@
                 {% endif %}
         </nav>
         </header>
+    <body>
      {% if messages %}
      {% for message in messages %}
     <div class="flex items-center"><h2>{{ message }}</h2></div>

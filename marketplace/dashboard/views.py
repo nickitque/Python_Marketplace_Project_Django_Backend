@@ -11,6 +11,13 @@ def index(request):
         'items': items,
     })
 
+@login_required
+def index2(request):
+    items = Item.objects.filter(created_by=request.user)
+    return render(request, 'dashboard/new_index.html', {
+        'items': items,
+    })
+
 
 def seller_detail(request, pk):
     user = User.objects.get(pk=pk)
