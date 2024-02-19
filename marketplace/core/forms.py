@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from betterforms.multiform import MultiModelForm
 
+
 class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': 'Your username',
@@ -42,7 +43,7 @@ class SignUpForm(UserCreationForm):
     # }))
 
 
-class addUserMultiForm(MultiModelForm):
+class AddUserMultiForm(MultiModelForm):
     form_classes = {
         'user': UserCreationForm,
         'profile': SignUpForm,
