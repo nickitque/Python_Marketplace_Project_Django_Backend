@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from item.models import Item
+from core.models import Profile
 from django.contrib.auth.decorators import login_required
 from .models import Conversation
 from .forms import ConversationMessageForm
@@ -50,6 +51,7 @@ def inbox(request):
 def detail(request, pk):
     conversation = Conversation.objects.filter(members__in=[request.user.id]).get(pk=pk)
     conversations = Conversation.objects.filter(members__in=[request.user.id])
+    profile = Profile.objects.filter(user=request.user).first()
     if request.method == 'POST':
         form = ConversationMessageForm(request.POST)
 
@@ -67,4 +69,5 @@ def detail(request, pk):
         'conversation': conversation,
         'form': form,
         'conversations': conversations,
+        'profile': profile,
     })
