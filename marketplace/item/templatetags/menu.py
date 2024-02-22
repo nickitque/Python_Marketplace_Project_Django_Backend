@@ -4,6 +4,7 @@ from item.models import Category
 
 register = template.Library()
 
+
 @register.inclusion_tag('item/menu.html')
 def menu():
     categories = Category.objects.all()

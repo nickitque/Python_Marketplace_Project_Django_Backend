@@ -19,7 +19,7 @@ def items(request):
         items = items.filter(Q(name__icontains=query) | Q(description__icontains=query))
 
     # paginator code
-    paginator = Paginator(items, 5)
+    paginator = Paginator(items, 10)
     page = request.GET.get('page')
     items = paginator.get_page(page)
 
