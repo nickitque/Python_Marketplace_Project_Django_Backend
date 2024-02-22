@@ -15,8 +15,11 @@
         {% for item in items %}
         <div>
             <a href="{% url 'item:detail' item.category.slug item.pk %}">
-                <div>
-                    <img class="h-44 w-full object-cover" src="{{ item.image_url|default_if_none:'/media/item_images/default.png' }}" alt="">
+                <div class="relative overflow-hidden">
+                    <img class="h-44 w-full object-cover {% if item.is_sold == True %} blur-sm {% else %} {% endif %}" src="{{ item.image_url|default_if_none:'/media/item_images/default.png' }}" alt="">
+                          {% if item.is_sold == True %}
+                          <div class="absolute w-full py-2.5 bottom-0 inset-x-0 bg-blue-400 text-white text-base text-center leading-4">Продано</div>
+                      {% else %} {% endif %}
                 </div>
                 <div class="p-6 bg-white rounded-b-xl">
                     <h2 class="text-xl">{{ item.name }}</h2>

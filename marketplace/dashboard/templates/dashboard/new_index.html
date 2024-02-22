@@ -4,9 +4,8 @@
 {% block content %}
 
 <body class="bg-gray-200">
-
+    <!-- Sidebar -->
 <div class="flex">
-    <!-- Side navbar -->
     <div class="bg-indigo-900 w-64">
         <div class="bg-indigo-800">
             <div class="text-gray-200 p-5 text-xl font-bold">Панель управления</div>
@@ -18,13 +17,14 @@
             <div>
                 <img class="w-5 h-5" src="/media/dashboard_images/plus.png" alt="">
             </div>
-            <div class="mx-3 text-sm text-gray-100">Новое объявление</div>
+            <div class="mx-3 text-sm text-gray-100">
+                <a href="{% url 'item:new' %}">Новое объявление</a></div>
         </div>
         <div class="flex m-5 mt-2">
             <div>
                 <img class="w-5 h-5" src="/media/dashboard_images/tyre.png" alt="">
             </div>
-            <div class="mx-3 text-sm text-gray-100">Мои объявления</div>
+            <div class="mx-3 text-sm text-gray-100">Мои объявления (5 {{ user.items.number }})</div>
         </div>
             <div class="flex m-5 mt-2">
             <div>
@@ -36,18 +36,48 @@
             <div>
                 <img class="w-5 h-5" src="/media/dashboard_images/msg.png" alt="">
             </div>
-            <div class="mx-3 text-sm text-gray-100">Сообщения</div>
+            <div class="mx-3 text-sm text-gray-100"><a href="{% url 'conversation:inbox' %}">Сообщения</a></div>
         </div>
         <div class="flex m-5 mt-2">
             <div>
                 <img class="w-5 h-5" src="/media/dashboard_images/account.png" alt="">
             </div>
-            <div class="mx-3 text-sm text-gray-100">Аккаунт</div>
+            <div class="mx-3 text-sm text-gray-100"><a href="{%url 'dashboard:index2' %}">Аккаунт</a></div>
         </div>
     </div>
+        <!-- Sidebar end -->
+
         <!-- Main content area -->
-    <div>
-        Main content area
+    <div class="flex">
+        <!--Top navbar-->
+        <div>
+            <div class="bg-white px-2 py-0.5 h-18 flex">
+            <div class="left md:w-3/4 sm:w-1/3 flex p-3">
+<!--                <img src="/media/dashboard_images/tyre.png" class="w-10 h-10" alt="">-->
+                <span class="block p-2 text-xl">Привет, Nikita &#128075;</span>
+            </div>
+                <div class="right md:w-1/4 sm:w-2/3 flex content-end">
+                    <img src="/media/dashboard_images/search.png" class="w-7 h-7 bg-gray-100 rounded-full p-1 mx-2 my-4" alt="">
+                    <img src="/media/dashboard_images/search.png" class="w-7 h-7 bg-gray-100 rounded-full p-1 mx-2 my-4" alt="">
+                    <img src="/media/dashboard_images/search.png" class="w-7 h-7 bg-gray-100 rounded-full p-1 mx-2 my-4" alt="">
+                    <a class="mt-4 mx-1 text-indigo-500" href="">Выход</a>
+                </div>
+            </div>
+
+            <!-- site banner-->
+            <div class="bg-indigo-100 m-4 p-4">
+                <div class="text-2xl text-gray-800">У вас новое сообщение</div>
+                <div>от Daww</div>
+            </div>
+
+            <div class="card-container flex m-7 space-x-6">
+                {% for item in items %}
+                <div class="w-1/4 bg-white p-4">
+                    <a href="{% url 'item:detail' item.category.slug  item.pk %}">{{ item.name }}</a>
+                <span><a class="text-sm" href="{% url 'item:edit' item.pk %}">Редактировать</a></span></div>
+                        {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
 </body>
