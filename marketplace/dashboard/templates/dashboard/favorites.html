@@ -28,7 +28,7 @@
             </div>
             <div class="mt-4 px-6 py-5 bg-gray-100 rounded-xl">
     <h2 class="mb-3 text-2xl text-center">У Вас {{ posts.count }} сохраненных постов, {{ user.get_username }}:</h2>
-    <div class="grid grid-cols-5 gap-3">
+    <div class="grid grid-cols-4 gap-3">
         {% for post in posts %}
         <div>
             <a href="{% url 'blog:blogpost_detail' post.slug %}">

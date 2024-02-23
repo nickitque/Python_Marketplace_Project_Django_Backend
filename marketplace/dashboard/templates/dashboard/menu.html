@@ -1,7 +1,7 @@
     <!-- Sidebar -->
 <div class="flex">
-    <div class="bg-indigo-900 w-64">
-        <div class="bg-indigo-800">
+    <div class="rounded-xl bg-indigo-900 w-64">
+        <div class="rounded-xl bg-indigo-800">
             <div class="text-gray-200 p-5 text-xl font-bold">Панель управления</div>
         </div>
         <div>
@@ -19,7 +19,7 @@
             <div>
                 <img class="w-5 h-5" src="/media/dashboard_images/tyre.png" alt="">
             </div>
-            <div class="mx-3 text-sm text-gray-100">Мои объявления ({{ items.count }})</div>
+            <div class="mx-3 text-sm text-gray-100">Мои объявления {{ user.items.count }}</div>
         </div>
             </a>
         <a href="{% url 'dashboard:favorites' %}">

@@ -12,7 +12,7 @@
     <div class="flex">
         <!--Top navbar-->
         <div>
-            <div class="bg-white px-2 py-0.5 h-18 flex">
+            <div class="rounded-xl bg-white px-2 py-0.5 h-18 flex">
             <div class="left md:w-3/4 sm:w-1/3 flex p-3">
 <!--                <img src="/media/dashboard_images/tyre.png" class="w-10 h-10" alt="">-->
                 <span class="block p-2 text-xl">Привет, Nikita &#128075;</span>
@@ -24,19 +24,22 @@
             </div>
 
             <!-- site banner-->
-            <div class="bg-indigo-100 m-4 p-4">
+            <div class="rounded-xl bg-indigo-100 m-4 p-4">
                 <div class="text-2xl text-gray-800">У вас новое сообщение</div>
                 <div>от Daww</div>
             </div>
 
             <div class="mt-4 px-6 py-5 bg-gray-100 rounded-xl">
-    <h2 class="mb-3 text-2xl text-center">У Вас {{ items.count }} опубликованных товаров, {{ user.get_username }}:</h2>
-    <div class="grid grid-cols-5 gap-3">
+    <h2 class="mb-3 text-2xl text-center">У Вас {{ items.count }} товаров, {{ user.get_username }}:</h2>
+    <div class="grid grid-cols-4 gap-2">
         {% for item in items %}
         <div>
             <a href="{% url 'item:detail' item.category.slug  item.pk %}">
                 <div class="relative overflow-hidden">
-                    <img class="h-44 w-full object-cover " src="{{ item.image_url|default_if_none:'/media/item_images/default.png' }}" alt="">
+                    <img class="h-44 w-full object-cover {% if item.is_sold == True %} blur-sm {% else %} {% endif %}" src="{{ item.image_url|default_if_none:'/media/item_images/default.png' }}" alt="">
+                          {% if item.is_sold == True %}
+                          <div class="absolute w-full py-2.5 bottom-0 inset-x-0 bg-gray-400 text-white text-base text-center leading-4">Продано</div>
+                      {% else %} {% endif %}
                 </div>
                 <div class="p-6 bg-white rounded-b-xl">
                     <h2 class="text-xl">{{ item.name }}</h2>
