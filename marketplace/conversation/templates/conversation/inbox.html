@@ -5,8 +5,8 @@
 
 <div class="flex">
     <!-- Sidebar -->
-    <div class="bg-indigo-900 w-64">
-        <div class="bg-indigo-800">
+    <div class="rounded-xl mb-4 bg-indigo-900 w-64">
+        <div class="rounded-xl bg-indigo-800">
             <div class="text-gray-200 p-5 text-xl font-bold">Панель управления</div>
         </div>
         <div>
@@ -19,12 +19,14 @@
             <div class="mx-3 text-sm text-gray-100">
                 <a href="{% url 'item:new' %}">Новое объявление</a></div>
         </div>
+        <a href="{%url 'dashboard:index2' %}">
         <div class="flex m-5 mt-2">
             <div>
                 <img class="w-5 h-5" src="/media/dashboard_images/tyre.png" alt="">
             </div>
-            <div class="mx-3 text-sm text-gray-100">Мои объявления (5 {{ user.items.number }})</div>
+            <div class="mx-3 text-sm text-gray-100">Мои объявления</div>
         </div>
+            </a>
             <div class="flex m-5 mt-2">
             <div>
                 <img class="w-5 h-5" src="/media/dashboard_images/fav.png" alt="">

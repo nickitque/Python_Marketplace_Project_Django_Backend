@@ -5,8 +5,8 @@
 
 <div class="flex">
     <!-- Sidebar -->
-    <div class="bg-indigo-900 w-64">
-        <div class="bg-indigo-800">
+    <div class="rounded-xl bg-indigo-900 w-64">
+        <div class="rounded-xl bg-indigo-800">
             <div class="text-gray-200 p-5 text-xl font-bold">Панель управления</div>
         </div>
         <div>
@@ -19,12 +19,14 @@
             <div class="mx-3 text-sm text-gray-100">
                 <a href="{% url 'item:new' %}">Новое объявление</a></div>
         </div>
+        <a href="{%url 'dashboard:index2' %}">
         <div class="flex m-5 mt-2">
             <div>
                 <img class="w-5 h-5" src="/media/dashboard_images/tyre.png" alt="">
             </div>
-            <div class="mx-3 text-sm text-gray-100">Мои объявления (5 {{ user.items.number }})</div>
+            <div class="mx-3 text-sm text-gray-100">Мои объявления</div>
         </div>
+            </a>
             <div class="flex m-5 mt-2">
             <div>
                 <img class="w-5 h-5" src="/media/dashboard_images/fav.png" alt="">
@@ -67,25 +69,25 @@
     {% endfor %}
 </div>
 
-    <div class="ml-5">
+    <div class="ml-4 bg-gray-200 rounded-xl">
     {% for message in conversation.messages.all %}
-        <div class="flex flex-col w-full max-w-[520px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700 {% if message.created_by == request.user %} {% else %} bg-gray-300 {% endif %}">
+        <div class="mb-4 flex flex-col w-full max-w-[520px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-xl dark:bg-gray-700 {% if message.created_by == request.user %} bg-indigo-100 {% else %}  {% endif %}">
           <div class="flex items-center space-x-2 rtl:space-x-reverse">
-              <img class="w-8 h-8 rounded-full" src="{{profile.photo.url}}" alt="">
+              <img class="w-8 h-8 rounded-full" src="{{ profile.photo.url }}" alt="">
               <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ message.created_by.username }}</span>
-              <span class="text-sm font-normal text-gray-500 dark:text-gray-400">| {{ message.created_at}}</span>
+              <span class="text-sm font-normal text-gray-500 dark:text-gray-400">| {{ message.created_at }}</span>
           </div>
           <p class="ml-4 text-sm font-normal py-2.5 text-gray-900 dark:text-white">{{ message.content }}</p>
         </div>
     {% endfor %}
 
-    <div class="flex flex-col w-full max-w-[520px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
-    <form method="post" action='.' class="mt-6">
+    <div class="flex flex-col w-full max-w-[520px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-xl rounded-es-xl dark:bg-gray-700">
+    <form method="post" action='.' class="">
     {% csrf_token %}
-
-    {{ form.as_p }}
+    <div>{{ form.as_p }}</div>
         <button class="py-4 px-8 text-lg bg-teal-500">Отправить</button>
 </form>
 </div>
     </div>
 {% endblock %}
+</div>
