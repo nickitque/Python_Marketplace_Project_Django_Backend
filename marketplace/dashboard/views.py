@@ -18,8 +18,19 @@ def index(request):
 @login_required
 def index2(request):
     items = Item.objects.filter(created_by=request.user)
+    posts = Post.objects.filter(likes=request.user)
     return render(request, 'dashboard/new_index.html', {
         'items': items,
+        'posts': posts,
+    })
+
+@login_required
+def favorites(request):
+    items = Item.objects.filter(created_by=request.user)
+    posts = Post.objects.filter(likes=request.user)
+    return render(request, 'dashboard/favorites.html', {
+        'items': items,
+        'posts': posts,
     })
 
 
