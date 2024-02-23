@@ -10,4 +10,5 @@ urlpatterns = [
     path("<slug:slug>/", views.blogpost_detail, name="blogpost_detail"),
     path("<slug:slug>/like/", PostLikeToggle.as_view(), name="like-toggle"),
     path("category/<category>/", views.blog_category, name="blog_category"),
+    path("like/", views.like_post, name="like"),  # is not used right now
 ]

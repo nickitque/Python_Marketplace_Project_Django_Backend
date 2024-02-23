@@ -4,6 +4,8 @@ from blog.models import Post
 from .forms import SignUpForm
 from django.contrib.auth import logout
 from django.contrib import messages
+from django.db.models import Q
+
 
 
 def logout_view(request):
@@ -15,10 +17,12 @@ def index(request):
     items = Item.objects.filter(is_sold=False)[0:10]
     posts = Post.objects.all()
     categories = Category.objects.all()
+    filled_categories = Category.objects.filter()
     return render(request, 'core/index.html', {
         'categories': categories,
         'items': items,
         'posts': posts,
+        'filled_categories': filled_categories,
     })
 
 

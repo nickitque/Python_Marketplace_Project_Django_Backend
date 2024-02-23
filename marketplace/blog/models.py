@@ -32,7 +32,7 @@ class Post(models.Model):
         return reverse("blog:blogpost_detail", kwargs={"slug": self.slug})
 
     def get_like_url(self):
-        return reverse("blog:like-toggle", kwargs={"slug": self.slug})
+        return reverse("blog:like-toggle", kwargs={"id": self.slug})
 
     def __str__(self):
         return self.title

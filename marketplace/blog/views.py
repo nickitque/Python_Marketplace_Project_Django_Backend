@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import RedirectView
 from .models import Post, Comment
 
@@ -46,3 +46,15 @@ class PostLikeToggle(RedirectView):
             else:
                 obj.likes.add(user)
         return url_
+
+
+def like_post(request):
+    """Is not used right now"""
+    post_id = request.POST.get('post_id', '')
+    post = get_object_or_404(Post, id=post_id)
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+
+    return redirect('blog_index')
