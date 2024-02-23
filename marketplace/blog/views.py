@@ -5,9 +5,10 @@ from .models import Post, Comment
 
 def blog_index(request):
     posts = Post.objects.all().order_by("-created_on")
-
+    logged_user = request.user
     return render(request, "blog/index.html", {
         "posts": posts,
+        "logged_user": logged_user,
     })
 
 

@@ -10,7 +10,7 @@
         <a href="/logout/"><button type="button" class="py-1.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Выход из аккаунта</button></a>
 
 <div class="mt-4 px-6 py-5 bg-gray-100 rounded-xl">
-    <h2 class="mb-3 text-2xl text-center">У Вас {{ user.items.count }} объявлений, {{ user.get_username }}:</h2>
+    <h2 class="mb-3 text-2xl text-center">У Вас {{ items.count }} объявлений, {{ user.get_username }}:</h2>
     <div class="grid grid-cols-5 gap-3">
         {% for item in items %}
         <div>
@@ -18,7 +18,7 @@
                 <div class="relative overflow-hidden">
                     <img class="h-44 w-full object-cover {% if item.is_sold == True %} blur-sm {% else %} {% endif %}" src="{{ item.image_url|default_if_none:'/media/item_images/default.png' }}" alt="">
                           {% if item.is_sold == True %}
-                          <div class="absolute w-full py-2.5 bottom-0 inset-x-0 bg-blue-400 text-white text-base text-center leading-4">Продано</div>
+                          <div class="absolute w-full py-2.5 bottom-0 inset-x-0 bg-gray-400 text-white text-base text-center leading-4">Продано</div>
                       {% else %} {% endif %}
                 </div>
                 <div class="p-6 bg-white rounded-b-xl">
@@ -30,5 +30,23 @@
         {% endfor %}
     </div>
 </div>
+</div>
+
+<div class="mt-4 px-6 py-5 bg-gray-100 rounded-xl">
+    <h2 class="mb-3 text-2xl text-center">У Вас {{ posts.count }} сохраненных постов, {{ user.get_username }}:</h2>
+    <div class="grid grid-cols-5 gap-3">
+        {% for post in posts %}
+        <div>
+            <a href="#">
+                <div class="relative overflow-hidden">
+                    <img class="h-44 w-full object-cover " src="{{ post.image_url|default_if_none:'/media/item_images/default.png' }}" alt="">
+                </div>
+                <div class="p-6 bg-white rounded-b-xl">
+                    <h2 class="text-xl">{{ post.title }}</h2>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
