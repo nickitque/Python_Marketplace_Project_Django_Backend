@@ -34,22 +34,39 @@ def items(request):
 def category_detail(request, slug):
     categories = Category.objects.all()
     category = get_object_or_404(Category, slug=slug)
+    category_id = request.GET.get('category', 0)
     items = category.items.all()
+
+    if category_id:
+        items = items.filter(category_id=category_id)
+
     return render(request, 'item/category_detail.html', {
         'category': category,
         'items': items,
         'categories': categories,
+        'category_id': int(category_id),
     })
 
 
 def detail(request, category_slug, pk):
     item = get_object_or_404(Item, pk=pk)
     related_items = Item.objects.filter(category=item.category, is_sold=False).exclude(pk=pk)[0:3]
+    price_usd = item.price * 0.31
 
     return render(request, 'item/detail.html', {
         'item': item,
         'related_items': related_items,
+        'price_usd': price_usd,
     })
+
+
+def like_item(request):
+    item_id = request.POST.get('item_id')
+    item = get_object_or_404(Item, id=item_id)
+    if item.liked_by.filter(id=request.user.id).exists():
+        item.liked_by.remove(request.user)
+    else:
+        item.liked_by.add(request.user)
 
 
 @login_required()

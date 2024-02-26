@@ -1,15 +1,14 @@
 {% extends 'core/base.html' %}
-
-{% block title %} Добавить новое объявление {% endblock %}
+{% block title %} Создать новое объявление {% endblock %}
 
 {% block content %}
 <div class="container mx-auto">
 <h1 class="text-3xl text-center font-bold dark:text-white">{{ title }}</h1>
 <form method="post" action="" enctype="multipart/form-data" class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl">
     {% csrf_token %}
-    <div class="space-y-4">
-        {{ form.as_p }}
-    </div>
+        <div class="space-y-4">
+            {{ form.as_p }}
+        </div>
             {% if form.errors or form.non_field_errors %}
         <div class="mb-3 p-6 bg-red-100 rounded-xl">
             {% for field in form %}
@@ -18,9 +17,7 @@
             {{ form.non_field_errors }}
         </div>
         {% endif %}
-            <button class="mt-6 py-4 px-8 text-lg bg-teal-500 howver:bg-teal-700 rounded-xl text-white">
-            Отправить
-        </button>
+            <button class="mt-6 py-4 px-8 text-lg bg-teal-500 howver:bg-teal-700 rounded-xl text-white">Отправить</button>
 </form>
 </div>
 {% endblock %}

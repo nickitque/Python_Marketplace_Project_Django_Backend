@@ -44,13 +44,18 @@
         {% for item in items %}
         <div class="mt-4">
             <a href="{% url 'item:detail' item.category.slug  item.pk %}">
-                <div>
+                <div class="item_img">
                     <img class="h-32 w-full object-cover rounded-t-xl" src="{{ item.image_url|default_if_none:'/media/item_images/default.png' }}" alt="">
                 </div>
-                <div class="p-4 bg-white rounded-b-xl">
+                <div class="p-4 bg-white rounded-b-xl relative overflow-hidden">
                     <h3 class="text-base text-gray-900 dark:text-white">{{ item.name }}</h3>
-                    <p class="text-sm text-gray-900 font-extralight dark:text-white">{{ item.price|floatformat:0 }} BYN | {{ item.price|floatformat:0 }} USD</p>
+                    <p class="text-sm text-gray-900 font-extralight dark:text-white"><span id="price_byn">{{ item.price|floatformat:0 }}</span> BYN | <span class="price_usd">{{ item.price|floatformat:0 }}</span> USD</p>
                     <p class="text-xs">Минск, {{ item.location }}</p>
+                    <div class="absolute py-4.5 bottom-0">
+            <a id="{{ item.id }}" class="btn-like" href="#"> <button type="button" class="ml-36 pr-2 text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-1 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+<svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path></svg>
+<span class="sr-only">Like</span><p class="ml-1">{{ post.likes.count }}</p></button></a>
+                    </div>
                 </div>
             </a>
         </div>
@@ -75,6 +80,22 @@
     </div>
 </div>
 
+<script type="text/javascript">
+//    var byn_pr = document.getElementById('price_usd').innerHTML = "5500"
+//    console.log(byn_pr)
+
+//$(document).on('click', '.btn-like', function(){
+//    window.CSRF_TOKEN = "{{ csrf_token }}"
+//    console.log(this.id)
+//    var item_id = this.id
+//    $.ajax({
+//        method:"POST",
+//        url:'/items/like/',
+//        data:{item_id:item_id, csrfmiddlewaretoken:window.CSRF_TOKEN}
+//    })
+//})
+
+</script>
 
 {% endblock %}
 
