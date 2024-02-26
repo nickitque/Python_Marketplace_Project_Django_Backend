@@ -4,17 +4,16 @@
         <div class="rounded-xl bg-indigo-800">
             <div class="text-gray-200 p-5 text-xl font-bold">Панель управления</div>
         </div>
-        <div>
-            <div class="p-5 text-gray-200 font-bold text-xs">Страницы</div>
+                <div>
+            <div class="p-5 text-gray-200 font-bold text-xs">Объявления</div>
         </div>
-        <div class="flex m-5 mt-2">
-            <div>
+         <div class="flex m-5 mt-2">
+            <a href="{% url 'item:new' %}"><div>
                 <img class="w-5 h-5" src="/media/dashboard_images/plus.png" alt="">
             </div>
-            <div class="mx-3 text-sm text-gray-100">
-                <a href="{% url 'item:new' %}">Новое объявление</a></div>
+            <div class="mx-3 text-sm text-gray-100">Новое объявление</a></div>
         </div>
-        <a href="{%url 'dashboard:index2' %}">
+                <a href="{%url 'dashboard:index2' %}">
         <div class="flex m-5 mt-2">
             <div>
                 <img class="w-5 h-5" src="/media/dashboard_images/tyre.png" alt="">
@@ -22,6 +21,18 @@
             <div class="mx-3 text-sm text-gray-100">Мои объявления {{ user.items.count }}</div>
         </div>
             </a>
+        <div>
+            <div class="p-5 text-gray-200 font-bold text-xs">Страницы</div>
+        </div>
+        <div class="flex m-5 mt-2">
+            <a href="{% url 'conversation:inbox' %}"><div>
+                <img class="w-5 h-5" src="/media/dashboard_images/msg.png" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100">Сообщения</a></div>
+        </div>
+
+
+
         <a href="{% url 'dashboard:favorites' %}">
         <div class="flex m-5 mt-2">
             <div>
@@ -30,17 +41,13 @@
             <div class="mx-3 text-sm text-gray-100">Избранное</div>
         </div>
         </a>
+
         <div class="flex m-5 mt-2">
-            <div>
-                <img class="w-5 h-5" src="/media/dashboard_images/msg.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100"><a href="{% url 'conversation:inbox' %}">Сообщения</a></div>
-        </div>
-        <div class="flex m-5 mt-2">
-            <div>
-                <img class="w-5 h-5" src="/media/dashboard_images/account.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100"><a href="#">Аккаунт</a></div>
+            <a href="{%url 'dashboard:account' %}">
+                <div>
+                    <img class="w-5 h-5" src="/media/dashboard_images/account.png" alt="">
+                </div>
+                <div class="mx-3 text-sm text-gray-100">Аккаунт</a></div>
         </div>
     </div>
-        <!-- Sidebar end -->
+
