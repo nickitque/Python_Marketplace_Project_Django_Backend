@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import RedirectView
 from .models import Post, Comment
+from .forms import CommentForm
 
 
 def blog_index(request):
@@ -24,11 +25,24 @@ def blog_category(request, category):
 
 
 def blogpost_detail(request, slug):
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        new_comment = comment_form.save(commit=False)
+        post_id = request.POST.get('post_id')
+        post = get_object_or_404(Post, id=post_id)
+        new_comment.post = post
+        new_comment.save()
+
+    else:
+        comment_form = CommentForm()
+
     post = Post.objects.get(slug=slug)
     comments = Comment.objects.filter(post=post)
+
     context = {
         "post": post,
         "comments": comments,
+        "comment_form": comment_form,
     }
 
     return render(request, "blog/detail.html", context)
