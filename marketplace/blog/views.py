@@ -20,6 +20,7 @@ def blog_category(request, category):
     context = {
         "category": category,
         "posts": posts,
+        "logged_user": request.user,
     }
     return render(request, "blog/category.html", context)
 
