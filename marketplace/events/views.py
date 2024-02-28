@@ -8,7 +8,7 @@ def index(request):
     context = {
         "events": all_events,
     }
-    return render(request, 'index.html', context)
+    return render(request, 'events/index.html', context)
 
 
 def all_events(request):
