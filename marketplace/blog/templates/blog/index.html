@@ -6,37 +6,89 @@
 
 
 <div class="container mx-auto">
-        <h3 class="text-4xl font-bold dark:text-white text-center mb-6">Блог</h3>
-<div class="grid grid-cols-3 gap-16">
+    <div class="bg-white py-6 sm:py-6">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Блог от Race-Marketplace</h2>
+      <p class="mt-2 text-lg leading-8 text-gray-600">Фотоотчеты, новости и результаты соревнований. Drift, Time-Attack и Drag.</p>
 
-{% block posts %}
-        {% for post in posts %}
 
-            <div class="container mx-auto">
-            <h3 class="text-2xl font-bold dark:text-white"><a href="{% url 'blog:blogpost_detail' post.slug %}">{{ post.title }}</a></h3>
-                <img class="max-h-60 max-w-lg" src="{{ post.image_url|default_if_none:'/media/item_images/default.png' }}" alt="{{ post.title }}">
-            <div><p class="text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                {{ post.created_on.date }} | Категория:
-                {% for category in post.categories.all %}
-                    <a class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline" href="{% url 'blog:blog_category' category.name %}">
-                        {{ category.name }}
-                    </a>
-                <a id="{{ post.slug }}" class="btn-post-like"><button class="ml-2 mt-2 text-gray-700 font-medium rounded-full text-sm text-center inline-flex items-center">
-                {% if logged_user in post.likes.all %}
-                                   <img class="w-4" src="/media/core_images/heart_filled.png" alt="">
-                {% else %}
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path></svg>
-                {% endif %}
-                <span class="sr-only">Like</span><p class="ml-1">{{ post.likes.count }}</p></button></a>
-                {% endfor %}
-            </p>
-            </div>
-            <p>{{ post.body | safe | slice:":200" }}...</p>
-            </div>
-        {% endfor %}
-    {% endblock posts %}
-    </div>
+<div class="inline-flex rounded-md shadow-sm" role="group">
+    <a href="category/Time-attack/"><button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-s-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+    <svg class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
+    </svg>
+    Time-Attack
+  </button></a>
+  <a href="category/drift/"><button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border-t border-b border-gray-900 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+    <svg class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12.25V1m0 11.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M4 19v-2.25m6-13.5V1m0 2.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M10 19V7.75m6 4.5V1m0 11.25a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM16 19v-2"/>
+    </svg>
+    Drift
+  </button></a>
+      <a href="category/drag/"><button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border-t border-b border-gray-900 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+    <svg class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12.25V1m0 11.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M4 19v-2.25m6-13.5V1m0 2.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M10 19V7.75m6 4.5V1m0 11.25a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM16 19v-2"/>
+    </svg>
+    Drag
+      </button></a>
+  <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-e-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+    <svg class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z"/>
+      <path d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/>
+    </svg>
+    Фотоотчеты
+  </button>
 </div>
+
+    </div>
+    <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-8 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+      {% for post in posts %}
+        <article class="flex max-w-xl flex-col items-start justify-between">
+        <div class="flex items-center gap-x-4">
+           <h3 class="mt-3 text-xl font-semibold leading-6 text-gray-900 hover:text-gray-500">
+            <a href="{% url 'blog:blogpost_detail' post.slug %}">
+                {{ post.title }}
+            </a>
+          </h3>
+        </div>
+        <img class="" src="{{ post.image_url|default_if_none:'/media/item_images/default.png' }}" alt="{{ post.title }}">
+        <div class="group relative text-xs">
+          <a id="{{ post.slug }}" href="" class="btn-post-like">
+              <span class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">
+        <button>
+            <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" {% if logged_user in post.likes.all %} {% else %} fill="none" {% endif %} viewBox="1 -4 25 25" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path></svg>
+        </button>{{ post.likes.count }}</span></a>
+
+         <time datetime="2020-03-16" class="text-gray-500">{{ post.created_on.date }}</time>
+        {% for category in post.categories.all %}
+          <a href="{% url 'blog:blog_category' category.name %}" class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">{{ category.name }}</a>
+            <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">{{ post.body | safe | slice:":200" }}...</p>
+        </div>
+        <div class="relative mt-6 flex items-center gap-x-4">
+          <img src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="h-10 w-10 rounded-full bg-gray-50">
+          <div class="text-sm leading-6">
+            <p class="font-semibold text-gray-900">
+              <a href="#">
+                <span class="absolute inset-0"></span>
+                Michael Foster
+              </a>
+            </p>
+            <p class="text-gray-600">Co-Founder / CTO</p>
+          </div>
+        </div>
+      </article>
+                {% endfor %}
+
+        {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+
+
+
 
 <script type="text/javascript">
 window.CSRF_TOKEN = "{{csrf_token}}"
