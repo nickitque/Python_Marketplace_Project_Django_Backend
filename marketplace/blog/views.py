@@ -38,12 +38,16 @@ def blogpost_detail(request, slug):
         comment_form = CommentForm()
 
     post = Post.objects.get(slug=slug)
+    posts = Post.objects.all()
     comments = Comment.objects.filter(post=post)
+    related_posts = Post.objects.filter()
 
     context = {
         "post": post,
+        "posts": posts,
         "comments": comments,
         "comment_form": comment_form,
+        "related_posts": related_posts,
     }
 
     return render(request, "blog/detail.html", context)

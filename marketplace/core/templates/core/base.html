@@ -18,15 +18,83 @@
             <a class="flex" href="/">
                     <img class="h-8 mr-2" src="/media/core_images/race.png" alt="">
                     <span class="font-normal text-gray-500 md:text-lg lg:text-xl dark:text-gray-400"><span class="text-red-600">Race</span>-Marketplace.by</span></a>
-                <div class="space-x-2">
-                <a href="{% url 'item:items' %}" id="marketplace_btn_header" class="text-base font-semibold hover:text-gray-500">Маркетплейс</a>
+               <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
+      <ul class="flex flex-col font-medium p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:mt-0 md:text-sm  md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 md:space-x-8 md:rtl:space-x-reverse">
+        <li>
+          <a href="{% url 'item:items' %}" id="marketplace_btn_header" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent" aria-current="page">Маркетплейс</a>
+        </li>
+        <li>
+            <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
+                <a href="{% url 'blog:blog_index' %}">Блог</a> <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+  </svg></button>
+            <!-- Dropdown menu -->
+            <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownLargeButton">
+                  <li>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                  </li>
+                  <li>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                  </li>
+                  <li>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                  </li>
+                </ul>
+                <div class="py-1">
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                </div>
+            </div>
+        </li>
+          <a href="{% url 'events' %}" class="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Календарь</a>
+        </li>
+        <li>
+          <a href="{% url 'core:contact' %}" class="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Контакты</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+        <div class="flex">
                     {% if request.user.is_authenticated %}
-                <a href="{% url 'conversation:inbox' %}" id="messages_btn_header" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Сообщения</a>
-                <a href="{% url 'dashboard:index' %}" id="dashboard_btn_header" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-ms rounded-lg text-xs px-3 py-2 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"> Аккаунт  <span class="bg-blue-100 text-blue-800 text-xs font-semibold me-2 px-1 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">{{ user.get_username }}</span></a></div>
-                    {% else %}
+                <button><a href="{% url 'conversation:inbox' %}" id="messages_btn_header" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Сообщения</a></button>
+                <button>
+                    <div class="flex ml-4 items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white">
+                        <span class="sr-only">Open user menu</span>
+                            <img class="w-8 h-8 me-2 rounded-full" src="{{ user.profile.photo.url }}" alt="user photo">
+                            <a href="{% url 'dashboard:index' %}">{{ user.get_username }}</a>
+                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>
+                        </div>
+                </button>
+        </div>
+
+<!-- Dropdown menu -->
+    <div id="dropdownAvatarName" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+          <div class="font-medium ">Admin</div>
+          <div class="truncate">name@gmail.com</div>
+        </div>
+        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
+          <li>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+          </li>
+        </ul>
+        <div class="py-2">
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+        </div>
+    </div>
+
+            {% else %}
                 <a href="{% url 'core:login' %}" id="login_btn_header" class="py-2 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Вход</a>
                 <a href="{% url 'core:signup' %}" id="signup_btn_header" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Регистрация</a>
-                    {% endif %}
+            {% endif %}
         </nav>
     </header>
     <body>
@@ -46,7 +114,14 @@
                 <div class="md:flex md:justify-between">
                   <div class="mb-6 md:mb-0">
                     <a href="/" class="font-normal text-gray-500 md:text-lg lg:text-xl dark:text-gray-400"><span class="text-red-600">Race</span>-Marketplace.by</a>
+                      <div class="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+                      <img class="col-span-2 max-h-6 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg" alt="Transistor" width="158" height="48">
+                      <img class="col-span-2 max-h-6 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg" alt="Reform" width="158" height="48">
+                      <img class="col-span-2 max-h-6 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/tuple-logo-gray-900.svg" alt="Tuple" width="158" height="48">
+                      <img class="col-span-2 max-h-6 w-full object-contain sm:col-start-2 lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-900.svg" alt="SavvyCal" width="158" height="48">
+                    </div>
                   </div>
+
                   <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                       <div>
                           <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Инфо</h2>

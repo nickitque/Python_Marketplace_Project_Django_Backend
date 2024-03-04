@@ -8,7 +8,8 @@
 {% menu_dashboard %}
 
 
-<div class="ml-5">
+<div class="ml-2">
+
     {% for conversation in conversations %}
     <a href="{% url 'conversation:detail' conversation.id %}">
         <div class="p-6 mb-4 flex {% if conversation.id == pk %} bg-gray-300 {% else %} bg-gray-100 {% endif %} rounded-xl">
@@ -30,15 +31,28 @@
 </div>
 
     <div class="ml-4 border-4 rounded-xl">
+
     {% for message in conversation.messages.all %}
-        <div class="m-4 flex flex-col w-full max-w-[480px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-xl dark:bg-gray-700 {% if message.created_by == request.user %} bg-indigo-100 {% else %}  {% endif %}">
-          <div class="flex items-center space-x-2 rtl:space-x-reverse">
-              <img class="w-8 h-8 rounded-full" src="{{ profile.photo.url }}" alt="">
-              <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ message.created_by.username }}</span>
-              <span class="text-sm font-normal text-gray-500 dark:text-gray-400">| {{ message.created_at }}</span>
-          </div>
-          <p class="ml-4 text-sm font-normal py-2.5 text-gray-900 dark:text-white">{{ message.content }}</p>
-        </div>
+
+   <img class="ml-10 mt-4 w-8 h-8 rounded-full" src="{{ profile.photo.url }}">
+   <div class="{% if message.created_by == request.user %} ml-20 {% else %} ml-10 {% endif %} flex flex-col gap-1 w-full max-w-[320px]">
+      <div class="flex items-center space-x-2 rtl:space-x-reverse">
+         <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ message.created_by.username }}</span>
+         <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ message.created_at }}</span>
+      </div>
+      <div class="flex flex-col leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
+         <p class="text-sm font-normal text-gray-900 dark:text-white">{{ message.content }}</p>
+      </div>
+   </div>
+
+<!--        <div class="m-4 flex flex-col w-full max-w-[480px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-xl dark:bg-gray-700 {% if message.created_by == request.user %} bg-indigo-100 {% else %}  {% endif %}">-->
+<!--          <div class="flex items-center space-x-2 rtl:space-x-reverse">-->
+<!--              <img class="w-8 h-8 rounded-full" src="{{ profile.photo.url }}" alt="">-->
+<!--              <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ message.created_by.username }}</span>-->
+<!--              <span class="text-sm font-normal text-gray-500 dark:text-gray-400">| {{ message.created_at }}</span>-->
+<!--          </div>-->
+<!--          <p class="ml-4 text-sm font-normal py-2.5 text-gray-900 dark:text-white">{{ message.content }}</p>-->
+<!--        </div>-->
     {% endfor %}
 
     <div class="flex flex-col w-full max-w-[520px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-xl rounded-es-xl dark:bg-gray-700">
