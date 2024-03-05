@@ -4,7 +4,7 @@
 {% block content %}
 {% block page_title %}
 
-    <div class="container mx-auto">
+<div class="container mx-auto">
 {% endblock page_title %}
 
 
@@ -56,12 +56,13 @@
         <div class="lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
             {% for category in post.categories.all %}
             <h2 class="text-xl font-bold tracking-tight text-gray-900 mb-3">Другие посты в категории <a href="{% url 'blog:blog_category' category.name %}" class="font-semibold leading-7 text-indigo-600">{{ category.name }}</a></h2>
-            {% endfor %}
+
 
             <a class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600"></a>
+            {% endfor %}
+
 
             {% for post in related_posts %}
-
                <div class="p-2 w-full">
                    <a href="{% url 'blog:blogpost_detail' post.slug %}">
                     <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
@@ -73,10 +74,8 @@
                     </div>
                    </a>
               </div>
+            {% endfor %}
 
-
-
-    {% endfor %}
         </div>
       </div>
 
