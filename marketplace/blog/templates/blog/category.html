@@ -18,7 +18,7 @@
             </a>
           </h3>
         </div>
-        <img class="h-48 w-full object-cover rounded-xl" src="{{ post.image_url|default_if_none:'/media/item_images/default.png' }}" alt="{{ post.title }}">
+        <img class="mt-2 h-48 w-full object-cover rounded-xl" src="{{ post.image_url|default_if_none:'/media/item_images/default.png' }}" alt="{{ post.title }}">
         <div class="mt-3 group relative text-xs">
           <a id="{{ post.slug }}" href="" class="btn-post-like">
               <span class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">

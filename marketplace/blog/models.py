@@ -17,6 +17,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     slug = models.CharField(max_length=255)
     body = models.TextField()
+    descr = models.TextField()
     image = models.ImageField(upload_to='blog_images', blank=True, null=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='post_likes')
     created_on = models.DateTimeField(auto_now_add=True)

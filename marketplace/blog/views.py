@@ -7,8 +7,11 @@ from .forms import CommentForm
 def blog_index(request):
     posts = Post.objects.all().order_by("-created_on")
     logged_user = request.user
+    # add filtering the comments by post
+    comments = Comment.objects.filter()
     return render(request, "blog/index.html", {
         "posts": posts,
+        "comments": comments,
         "logged_user": logged_user,
     })
 
