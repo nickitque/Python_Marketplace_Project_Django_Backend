@@ -29,9 +29,11 @@ def account(request):
 @login_required
 def favorites(request):
     items = Item.objects.filter(created_by=request.user)
+    liked_items = Item.objects.filter(liked_by=request.user)
     posts = Post.objects.filter(likes=request.user)
     return render(request, 'dashboard/favorites.html', {
         'items': items,
+        'liked_items': liked_items,
         'posts': posts,
     })
 

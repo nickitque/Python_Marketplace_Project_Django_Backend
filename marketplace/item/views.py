@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.views.generic import RedirectView
 from django.core.paginator import Paginator
 from django.db.models import Q
 from .forms import NewItemForm, EditItemForm
@@ -10,6 +11,7 @@ def items(request):
     query = request.GET.get('query', '')
     category_id = request.GET.get('category', 0)
     categories = Category.objects.all()
+    pagination_items = Item.objects.filter(is_sold=False)
     items = Item.objects.filter(is_sold=False)
 
     if category_id:
@@ -25,6 +27,7 @@ def items(request):
 
     return render(request, 'item/items.html', {
         'items': items,
+        'pagination_items': pagination_items,
         'query': query,
         'categories': categories,
         'category_id': int(category_id),
@@ -35,7 +38,7 @@ def category_detail(request, slug):
     categories = Category.objects.all()
     category = get_object_or_404(Category, slug=slug)
     category_id = request.GET.get('category', 0)
-    items = category.items.all()
+    items = category.items.filter(is_sold=False)
 
     if category_id:
         items = items.filter(category_id=category_id)
@@ -60,6 +63,21 @@ def detail(request, category_slug, pk):
     })
 
 
+class ItemLikeToggle(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        category = self.kwargs.get("slug")
+        pk = self.kwargs.get("pk")
+        obj = Item.objects.get(pk=pk)
+        url_ = obj.get_absolute_url()
+        user = self.request.user
+        if user.is_authenticated:
+            if user in obj.liked_by.all():
+                obj.liked_by.remove(user)
+            else:
+                obj.liked_by.add(user)
+        return url_
+
+
 def like_item(request):
     item_id = request.POST.get('item_id')
     item = get_object_or_404(Item, id=item_id)
@@ -77,7 +95,7 @@ def new(request):
             item = form.save(commit=False)
             item.created_by = request.user
             item.save()
-            return redirect('item:detail', category_slug=item.category.slug, slug=item.slug)
+            return redirect('item:detail', category_slug=item.category.slug, id=item.id)
     else:
         form = NewItemForm()
 

@@ -9,7 +9,7 @@
 <!-- Advertisement section -->
 <section class="text-gray-600 body-font overflow-hidden">
   <div class="container py-2 mx-auto">
-      <nav class="flex mb-4" aria-label="Breadcrumb">
+  <nav class="flex mb-4" aria-label="Breadcrumb">
   <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
     <li class="inline-flex items-center">
       <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
@@ -77,9 +77,43 @@
       {% if item.is_sold == True %}
       <div class="absolute w-48 ml-10 py-2.5 top-10 rounded-xl inset-x-0 bg-gray-400 text-white text-base text-center leading-4">Продано</div>
       {% else %} {% endif %}
-      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-        <h2 class="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
+      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-1 mt-6 lg:mt-0">
+        <a href="{% url 'item:category_detail' item.category.slug %}">
+        <h2 class="text-sm title-font text-gray-500 tracking-widest">{{ item.category }}</h2>
+          </a>
         <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ item.name }}</h1>
+
+
+         <div class="flex mt-2">
+          <span class="flex items-center">
+            <span class="text-gray-600 mr-2">Опубликовано: {{ item.created_at }}</span>
+          </span>
+          <span class="flex border-l-2 border-gray-200 space-x-2s">
+            <button class="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-2">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2848 18.9935C12.1567 19.0875 12.0373 19.1728 11.9282 19.2493C11.8118 19.1721 11.6827 19.0833 11.5427 18.9832C10.8826 18.5109 10.0265 17.8176 9.18338 16.9529C7.45402 15.1792 6 12.9151 6 10.5C6 7.18629 8.68629 4.5 12 4.5C15.3137 4.5 18 7.18629 18 10.5C18 12.8892 16.4819 15.1468 14.6893 16.9393C13.8196 17.8091 12.9444 18.5099 12.2848 18.9935ZM19.5 10.5C19.5 16.5 12 21 12 21C11.625 21 4.5 16.5 4.5 10.5C4.5 6.35786 7.85786 3 12 3C16.1421 3 19.5 6.35786 19.5 10.5ZM13.5 10.5C13.5 11.3284 12.8284 12 12 12C11.1716 12 10.5 11.3284 10.5 10.5C10.5 9.67157 11.1716 9 12 9C12.8284 9 13.5 9.67157 13.5 10.5ZM15 10.5C15 12.1569 13.6569 13.5 12 13.5C10.3431 13.5 9 12.1569 9 10.5C9 8.84315 10.3431 7.5 12 7.5C13.6569 7.5 15 8.84315 15 10.5Z" fill="#080341"></path> </g></svg>
+            </button>
+            <p class="ml-1">{{ item.location }}</p>
+          </span>
+        </div>
+          <div class="flex mb-2">
+          <span class="flex items-center">
+            <span class="text-gray-600 mr-1.5">Обновлено: {{ item.updated_at }}</span>
+          </span>
+          <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
+            <a class="text-gray-500">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+              </svg>
+            </a>
+          </span>
+        </div>
+
+        <!-- End Advertisement characteristics -->
+
+        {% if item.description %}
+        <p class="leading-relaxed">{{ item.description }}</p>
+        {% endif %}
+        <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
         <div class="flex">
           <span class="flex items-center">
             <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
@@ -97,64 +131,9 @@
             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
             </svg>
-            <span class="text-gray-600 ml-3">Оценили: 4</span>
-          </span>
-          <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
-            <a class="text-gray-500">
-              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-              </svg>
-            </a>
-            <a class="text-gray-500">
-              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-              </svg>
-            </a>
-            <a class="text-gray-500">
-              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-              </svg>
-            </a>
+            <span class="text-gray-600 ml-3">Оценок: 4</span>
           </span>
         </div>
-
-           <div class="flex">
-          <span class="flex items-center">
-            <span class="text-gray-600">Опубликовано: {{ item.created_at }}</span>
-          </span>
-          <span class="flex border-l-2 border-gray-200 space-x-2s">
-            <button class="rounded-full w-6 h-6 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-2">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2848 18.9935C12.1567 19.0875 12.0373 19.1728 11.9282 19.2493C11.8118 19.1721 11.6827 19.0833 11.5427 18.9832C10.8826 18.5109 10.0265 17.8176 9.18338 16.9529C7.45402 15.1792 6 12.9151 6 10.5C6 7.18629 8.68629 4.5 12 4.5C15.3137 4.5 18 7.18629 18 10.5C18 12.8892 16.4819 15.1468 14.6893 16.9393C13.8196 17.8091 12.9444 18.5099 12.2848 18.9935ZM19.5 10.5C19.5 16.5 12 21 12 21C11.625 21 4.5 16.5 4.5 10.5C4.5 6.35786 7.85786 3 12 3C16.1421 3 19.5 6.35786 19.5 10.5ZM13.5 10.5C13.5 11.3284 12.8284 12 12 12C11.1716 12 10.5 11.3284 10.5 10.5C10.5 9.67157 11.1716 9 12 9C12.8284 9 13.5 9.67157 13.5 10.5ZM15 10.5C15 12.1569 13.6569 13.5 12 13.5C10.3431 13.5 9 12.1569 9 10.5C9 8.84315 10.3431 7.5 12 7.5C13.6569 7.5 15 8.84315 15 10.5Z" fill="#080341"></path> </g></svg>
-            </button>
-            <p class="ml-1">{{ item.location }}</p>
-          </span>
-        </div>
-          <div class="flex mb-2">
-          <span class="flex items-center">
-            <span class="text-gray-600">Обновлено: {{ item.updated_at }}</span>
-          </span>
-          <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
-            <a class="text-gray-500">
-              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-              </svg>
-            </a>
-          </span>
-        </div>
-        <!-- End Advertisement characteristics -->
-        {% if item.description %}
-        {{ item.description }}
-        {% endif %}
-                  <p class="text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white"></span></strong> {{ item.price|floatformat:0 }} BYN / ${{ price_usd|floatformat:0  }}</p>
-
-        <p class="leading-relaxed">Fam locavore kickstarter distillery. Mixtape chillwave tumeric sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo juiceramps cornhole raw denim forage brooklyn. Everyday carry +1 seitan poutine tumeric. Gastropub blue bottle austin listicle pour-over, neutra jean shorts keytar banjo tattooed umami cardigan.</p>
-        <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
-          <div class="flex">
-            <span class="mr-3">Color</span>
-            <button class="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none"></button>
-            <button class="border-2 border-gray-300 ml-1 bg-gray-700 rounded-full w-6 h-6 focus:outline-none"></button>
-            <button class="border-2 border-gray-300 ml-1 bg-indigo-500 rounded-full w-6 h-6 focus:outline-none"></button>
-          </div>
           <div class="flex ml-6 items-center">
               {% if request.user == item.created_by %}
               <span class="mr-3">Это Ваше объявление, <b>{{ item.created_by.username }}</b></span>
@@ -171,7 +150,9 @@
           </div>
         </div>
         <div class="flex">
-          <span class="title-font font-medium text-2xl text-gray-900">${{ item.price|floatformat:0 }}</span>
+          <span class="title-font font-medium text-2xl text-gray-900">${{ price_usd|floatformat:0  }}</span>
+                  <p class="ml-2 mt-1 text-gray-700"><strong><span class="text-base text-gray-900 dark:text-white"></span></strong>| {{ item.price|floatformat:0 }} BYN</p>
+
             {% if request.user == item.created_by %}
             <a class="flex ml-auto" href="{% url 'item:edit' item.pk %}"><button class="text-white bg-green-600 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">Редактировать</button></a>
             <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
@@ -193,11 +174,14 @@
 
           </button>
             {% endif %}
-            <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+          <a href="/items/{{item.category.slug}}/{{ item.id }}/like/">
+            <button class="rounded-full w-14 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-2">
             <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
               <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
             </svg>
+              <span class="ml-1">{{ item.liked_by.count }}</span>
           </button>
+            </a>
         </div>
       </div>
     </div>
@@ -210,11 +194,11 @@
  <div class="flex flex-col text-center mt-14 w-full">
       <h2 class="text-xs text-gray-500 tracking-widest font-medium title-font mb-1">ДРУГИЕ ОБЪЯВЛЕНИЯ</h2>
       <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Из категории <a class="text-indigo-500" href="{% url 'item:category_detail' item.category.slug %}">{{ item.category }}</a>:</h1>
-      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+      <p class="lg:w-2/3 mx-auto leading-relaxed text-base"></p>
     </div>
 
 <section class="text-gray-600 body-font">
-  <div class="container px-5 py-24 mx-auto">
+  <div class="container px-5 py-12 mx-auto">
     <div class="flex flex-wrap -m-4">
         {% for item in related_items %}
 

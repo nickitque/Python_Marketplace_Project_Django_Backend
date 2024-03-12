@@ -12,7 +12,9 @@
       <!--Categories loop-->
         {% for subcategory in category.children.all %}
       <div class="lg:w-1/5 md:w-1/2 p-1 w-full">
-        <a href="{% url 'item:items' %}?query={{ query }}&category={{ subcategory.id }}" class="block relative rounded overflow-hidden">
+        <!-- OLD url  <a href="{% url 'item:items' %}?query={{ query }}&category={{ subcategory.id }}" class="block relative rounded overflow-hidden"> -->
+        <!-- OLD url  <a href="{% url 'item:items' %}?query={{ query }}&category={{ subcategory.id }}" class="block relative rounded overflow-hidden"> -->
+        <a href="{% url 'item:category_detail' subcategory.slug %}" class="block relative rounded overflow-hidden">
           <img alt="{{ item.name }}" class="h-48 w-full object-cover object-center block rounded-t-xl" src="{{ subcategory.image_url|default_if_none:'/media/item_images/default.png' }}">
 
         <div class="bg-gray-100 rounded-b-xl p-2">

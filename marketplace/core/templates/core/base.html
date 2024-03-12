@@ -8,41 +8,80 @@
           <script src="https://cdn.tailwindcss.com"></script>
         <!-- Jquery-->
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+        <!-- Flowbite js for dropdowns -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
         <!-- Stylesheet -->
         <link rel="stylesheet" href="{% static 'core/styles.css' %}">
         <title>{% block title %} {% endblock %} | Race-Marketplace</title>
         <link rel="icon" type="image/x-icon" href="/media/core_images/race.png">
     </head>
-     <header class="bg-white dark:bg-gray-900">
+
+    <header class="bg-white dark:bg-gray-900">
         <nav class="py-6 px-6 flex justify-between items-center border-b border-gray-200">
             <a class="flex" href="/">
                     <img class="h-8 mr-2" src="/media/core_images/race.png" alt="">
                     <span class="font-normal text-gray-500 md:text-lg lg:text-xl dark:text-gray-400"><span class="text-red-600">Race</span>-Marketplace.by</span></a>
-               <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
+
+    <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
       <ul class="flex flex-col font-medium p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:mt-0 md:text-sm  md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 md:space-x-8 md:rtl:space-x-reverse">
         <li>
-          <a href="{% url 'item:items' %}" id="marketplace_btn_header" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent" aria-current="page">Маркетплейс</a>
+            <a href="{% url 'item:items' %}" id="marketplace_btn_header" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-gray-600 hover:text-blue-600 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent" aria-current="page">Маркетплейс</a>
         </li>
         <li>
-            <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
-                <a href="{% url 'blog:blog_index' %}">Блог</a> <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+    <button class="flex items-center justify-between w-full py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
+        <a class="md:hover:text-blue-700" href="{% url 'blog:blog_index' %}">Блог</a>
+    <svg id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="md:hover:text-blue-700 w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
   </svg></button>
             <!-- Dropdown menu -->
-            <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+        <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownLargeButton">
                   <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                    <a href="/blog/category/drift/" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Drift
+                        <svg class="w-4 h-4 ml-2 me-2" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 10 70 70" xml:space="preserve">
+                        <path fill="currentColor" clip-rule="evenodd" d="M65.948,32.912l-2.191,3.074C74.61,45.97,80.901,60.021,80.901,74.882h3.746  C84.647,58.814,77.772,43.621,65.948,32.912z"/>
+                        <path fill="currentColor" clip-rule="evenodd" d="M52.354,51.517l-2.219,3.021c5.953,4.896,9.5,12.358,9.5,20.344h3.75  C63.386,65.719,59.276,57.131,52.354,51.517z"/>
+                        <path fill="currentColor" clip-rule="evenodd" d="M59.335,42.006l-2.225,3.032c8.443,7.41,13.385,18.295,13.385,29.844h3.746  C74.241,62.152,68.757,50.142,59.335,42.006z"/>
+                        <path fill="currentColor" clip-rule="evenodd" d="M40.354,17.423c-0.469-0.318-0.723-0.73-0.703-1.147  c0.047-0.853,1.203-1.489,2.584-1.416c1.375,0.073,2.459,0.817,2.416,1.672c-0.041,0.853-1.197,1.484-2.578,1.416  C41.423,17.912,40.808,17.724,40.354,17.423z M58.538,30.772c-0.443-0.339-0.828-0.887-1.063-1.521  c-0.484-1.297-0.225-2.589,0.578-2.885c0.797-0.298,1.838,0.516,2.316,1.807c0.484,1.297,0.225,2.589-0.578,2.885  c-0.338,0.125-0.744,0.052-1.141-0.203C58.616,30.828,58.573,30.798,58.538,30.772z M48.62,43.517  c-2.145-2.328-4.984-4.88-8.145-7.25c-3.209-2.308-6.49-4.246-9.355-5.594l3.834-7.094c0.063-0.109,0.109-0.511,1.615-0.36  c1.51,0.147,3.691,0.163,9.979,4.776V28l0.006-0.005c6.281,4.614,6.947,6.693,7.541,8.084c0.594,1.396,0.229,1.563,0.141,1.651  L48.62,43.517z M22.813,60.328c-2.781-2.041-7.682-6.342-7.734-10.071l6.078-6.151c1.635,1.859,6.025,5.276,8.438,6.984  c2.354,1.792,6.928,4.958,9.193,5.958l-4.047,7.64C31.167,65.757,25.595,62.371,22.813,60.328z M9.132,63.443  c-1.162-2.333-1.24-4.176-0.418-5.295l1.975-2.688c0.24,0.443,0.443,0.865,0.584,1.251c0.76,2.114,0.254,3.473-0.324,4.26  L9.132,63.443z M23.944,74.314l1.816-2.475c0.578-0.787,1.719-1.678,3.965-1.583c0.41,0.016,0.875,0.083,1.369,0.182l-1.975,2.687  C28.298,74.246,26.517,74.719,23.944,74.314z M13.604,72.876c6.891,5.057,14.74,6.005,17.594,2.119l6.24-8.504l2.256,0.249  c1.932,0.214,3.328-2.692,0.473-3.448l-0.316-0.083l21.801-29.704c1.834-2.5,3.016-8.328-7.416-15.989  C43.804,9.86,38.595,12.74,36.761,15.24L14.96,44.939l-0.178-0.277c-1.572-2.5-3.928-0.295-3.146,1.486l0.918,2.077L6.308,56.73  C3.46,60.615,6.71,67.814,13.604,72.876z"/>
+                        </svg>
+                    </a>
+
                   </li>
                   <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                    <a href="/blog/category/drag/" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Drag
+                        <svg class="ml-2" fill="currentColor" height="16px" width="16px" id="Capa_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 289.939 289.939" xml:space="preserve">
+                            <g>
+                            <path id="circle8953" d="M144.969,20.485c-37.119,0-74.239,14.145-102.531,42.438c-56.584,56.584-56.584,148.478,0,205.063
+                                c1.951,1.955,5.118,1.957,7.072,0.006s1.957-5.118,0.006-7.072c-0.002-0.002-0.004-0.004-0.006-0.006
+                                c-52.763-52.763-52.763-138.155,0-190.918c52.763-52.763,138.155-52.763,190.918,0c52.763,52.763,52.763,138.155,0,190.918
+                                c-1.955,1.951-1.959,5.117-0.008,7.072s5.117,1.959,7.072,0.008c0.003-0.003,0.005-0.005,0.008-0.008
+                                c56.584-56.584,56.584-148.478,0-205.063C219.209,34.63,182.089,20.485,144.969,20.485z M144.969,35.798
+                                c-32.626,0-65.271,12.458-90.156,37.344c-49.771,49.771-49.771,130.541,0,180.312c0.956,0.996,2.539,1.028,3.535,0.072
+                                c0.996-0.956,1.028-2.539,0.072-3.535c-0.023-0.024-0.047-0.048-0.072-0.072c-47.86-47.861-47.86-125.38,0-173.24
+                                c23.93-23.93,55.267-35.881,86.621-35.881c1.381,0.02,2.516-1.084,2.535-2.465s-1.084-2.516-2.465-2.535
+                                C145.017,35.797,144.993,35.797,144.969,35.798z M224.872,80.405c-1.299,0.039-2.532,0.582-3.438,1.514l-62.701,62.701
+                                c-3.955-2.627-8.687-4.166-13.764-4.166c-13.748,0-25,11.252-25,25s11.252,25,25,25s25-11.252,25-25
+                                c0-5.076-1.539-9.809-4.166-13.764l62.701-62.701C231.775,85.81,229.431,80.271,224.872,80.405z M144.969,150.454
+                                c8.343,0,15,6.657,15,15s-6.657,15-15,15s-15-6.657-15-15S136.626,150.454,144.969,150.454z M144.969,152.954
+                                c-6.874,0-12.5,5.626-12.5,12.5c-0.02,1.381,1.084,2.516,2.465,2.535c1.381,0.02,2.516-1.084,2.535-2.465c0-0.024,0-0.047,0-0.071
+                                c0-4.172,3.328-7.5,7.5-7.5c1.381,0.02,2.516-1.084,2.535-2.465c0.02-1.381-1.084-2.516-2.465-2.535
+                                C145.017,152.953,144.993,152.953,144.969,152.954z"/>
+                                </g>
+                        </svg>
+                    </a>
                   </li>
                   <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                    <a href="/blog/category/time-attack/" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Time-Attack
+                        <svg class="w-4 h-4 ml-1" aria-hidden="true" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path  d="M12 22C16.4183 22 20 18.4183 20 14C20 9.58172 16.4183 6 12 6C7.58172 6 4 9.58172 4 14C4 18.4183 7.58172 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 2H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15.24 10.76L12 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
                   </li>
                 </ul>
                 <div class="py-1">
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                  <a href="{% url 'blog:blog_index' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Все категории</a>
                 </div>
             </div>
         </li>
@@ -52,58 +91,62 @@
           <a href="{% url 'core:contact' %}" class="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Контакты</a>
         </li>
       </ul>
+
+
+
     </div>
   </div>
 
-        <div class="flex">
-                    {% if request.user.is_authenticated %}
-                <button><a href="{% url 'conversation:inbox' %}" id="messages_btn_header" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Сообщения</a></button>
-                <button>
-                    <div class="flex ml-4 items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white">
-                        <span class="sr-only">Open user menu</span>
-                            <img class="w-8 h-8 me-2 rounded-full" src="{{ user.profile.photo.url }}" alt="user photo">
-                            <a href="{% url 'dashboard:index' %}">{{ user.get_username }}</a>
-                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>
-                        </div>
-                </button>
-        </div>
+    <div class="flex">
+        {% if request.user.is_authenticated %}
+        <button>
+            <a href="{% url 'conversation:inbox' %}" id="messages_btn_header" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Сообщения</a>
+        </button>
+
+        <button>
+            <div class="flex ml-4 items-center text-sm pe-1 font-medium text-gray-900 rounded-full dark:hover:text-blue-500 md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white">
+                <span class="sr-only">Open user menu</span>
+                    <img class="w-8 h-8 me-2 rounded-full" src="{{ request.user.profile.photo.url }}" alt="user photo">
+                    <a class="hover:text-blue-600" href="{% url 'dashboard:index' %}">{{ request.user.get_username }}</a>
+                    <svg id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName" class="hover:text-blue-600 w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>
+            </div>
+        </button>
+    </div>
+
+
 
 <!-- Dropdown menu -->
     <div id="dropdownAvatarName" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-          <div class="font-medium ">Admin</div>
-          <div class="truncate">name@gmail.com</div>
-        </div>
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
           <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+            <a href="{%url 'dashboard:index' %}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Мои объявления</a>
           </li>
           <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+            <a href="{% url 'dashboard:favorites' %}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Избранное</a>
           </li>
           <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+            <a href="{% url 'dashboard:account' %}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Настройки</a>
           </li>
         </ul>
         <div class="py-2">
-          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+          <a href="{% url 'core:logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Выйти из аккаунта</a>
         </div>
     </div>
 
-            {% else %}
-                <a href="{% url 'core:login' %}" id="login_btn_header" class="py-2 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Вход</a>
-                <a href="{% url 'core:signup' %}" id="signup_btn_header" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Регистрация</a>
-            {% endif %}
-        </nav>
-    </header>
+    {% else %}
+        <a href="{% url 'core:login' %}" id="login_btn_header" class="py-2 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Вход</a>
+        <a href="{% url 'core:signup' %}" id="signup_btn_header" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Регистрация</a>
+    {% endif %}
+    </nav>
+</header>
+
     <body>
          {% if messages %}
          {% for message in messages %}
     <div class="flex items-center"><h2>{{ message }}</h2></div>
          {% endfor %}
          {% endif %}
-
      <div class="px-6 py-6">
             {% block content %}
             {% endblock %}
@@ -122,48 +165,48 @@
                     </div>
                   </div>
 
-                  <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-                      <div>
-                          <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Инфо</h2>
-                          <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                              <li class="mb-2">
-                                  <a href="{% url 'core:about' %}" class="hover:underline">О Нас</a>
-                              </li>
-                              <li class="mb-2">
-                                  <a href="{% url 'blog:blog_index' %}" class="hover:underline">Блог</a>
-                              </li>
-                              <li class="mb-2">
-                                  <a href="{% url 'events' %}" class="hover:underline">Мероприятия</a>
-                              </li>
-                              <li>
-                                  <a href="{% url 'core:contact' %}" class="hover:underline">Контакты</a>
-                              </li>
-                          </ul>
-                      </div>
-                      <div>
-                          <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Соцсети</h2>
-                          <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                              <li class="mb-4">
-                                  <a href="#" class="hover:underline ">Instagram</a>
-                              </li>
-                              <li>
-                                  <a href="#" class="hover:underline">Telegram</a>
-                              </li>
-                          </ul>
-                      </div>
-                      <div>
-                          <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Еще</h2>
-                          <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                              <li class="mb-4">
-                                  <a href="#" class="hover:underline">Пользовательское</a>
-                              </li>
-                              <li>
-                                  <a href="#" class="hover:underline">Обработка</a>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
+          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Инфо</h2>
+                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                      <li class="mb-2">
+                          <a href="{% url 'core:about' %}" class="hover:underline">О Нас</a>
+                      </li>
+                      <li class="mb-2">
+                          <a href="{% url 'blog:blog_index' %}" class="hover:underline">Блог</a>
+                      </li>
+                      <li class="mb-2">
+                          <a href="{% url 'events' %}" class="hover:underline">Мероприятия</a>
+                      </li>
+                      <li>
+                          <a href="{% url 'core:contact' %}" class="hover:underline">Контакты</a>
+                      </li>
+                  </ul>
               </div>
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Соцсети</h2>
+                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                      <li class="mb-4">
+                          <a href="#" class="hover:underline ">Instagram</a>
+                      </li>
+                      <li>
+                          <a href="#" class="hover:underline">Telegram</a>
+                      </li>
+                  </ul>
+              </div>
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Еще</h2>
+                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                      <li class="mb-4">
+                          <a href="#" class="hover:underline">Пользовательское</a>
+                      </li>
+                      <li>
+                          <a href="#" class="hover:underline">Обработка</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
 
               <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
               <div class="sm:flex sm:items-center sm:justify-between">
@@ -208,3 +251,14 @@
         </footer>
     </body>
 </html>
+
+
+<script type="text/javascript">
+
+function myFunction() {
+    console.log("ds")
+    document.getElementById("myDropdown").toggle("#dropdownNavbar");
+}
+
+
+</script>
