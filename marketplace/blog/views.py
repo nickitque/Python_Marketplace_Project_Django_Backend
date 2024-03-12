@@ -6,13 +6,11 @@ from .forms import CommentForm
 
 def blog_index(request):
     posts = Post.objects.all().order_by("-created_on")
-    logged_user = request.user
     # add filtering the comments by post
     comments = Comment.objects.filter()
     return render(request, "blog/index.html", {
         "posts": posts,
         "comments": comments,
-        "logged_user": logged_user,
     })
 
 
@@ -59,7 +57,6 @@ def blogpost_detail(request, slug):
 class PostLikeToggle(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         slug = self.kwargs.get("slug")
-        print(slug)
         obj = Post.objects.get(slug=slug)
         url_ = obj.get_absolute_url()
         user = self.request.user
