@@ -34,7 +34,7 @@
 
     {% for message in conversation.messages.all %}
 
-   <img class="ml-10 mt-4 w-8 h-8 rounded-full" src="{{ profile.photo.url }}">
+   <img class="ml-10 mt-4 w-8 h-8 rounded-full" {% if message.created_by == request.user %} src="{{ request.user.profile.photo.url }}"{% else %} src="/media/item_images/default.png"  {% endif %}>
    <div class="{% if message.created_by == request.user %} ml-20 {% else %} ml-10 {% endif %} flex flex-col gap-1 w-full max-w-[320px]">
       <div class="flex items-center space-x-2 rtl:space-x-reverse">
          <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ message.created_by.username }}</span>
