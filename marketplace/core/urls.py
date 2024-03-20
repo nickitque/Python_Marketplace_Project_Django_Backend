@@ -16,5 +16,5 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='core/login.html',
                                                 authentication_form=LoginForm), name='login'),
     path('logout/', views.logout_view, name='logout'),
-    path('privacy/', views.user_agreement, name='user_agreement')
+    path('privacy/', views.user_agreement, name='privacy')
 ]

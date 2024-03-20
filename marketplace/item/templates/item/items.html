@@ -14,15 +14,15 @@
       <div class="lg:w-1/5 md:w-1/2 p-1 w-full overflow-hidden relative">
         <a href="{% url 'item:detail' item.category.slug  item.pk %}" class="block relative rounded overflow-hidden">
             <img alt="{{ item.name }}" class="h-48 w-full object-cover object-center block rounded-t-xl" src="{{ item.image_url|default_if_none:'/media/item_images/default.png' }}">
-            <button class="absolute top-1 right-1 rounded-full w-8 h-8 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500">
-                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <a href="" class="btn-item-like" id="{{item.id}}"><button class="absolute top-1 right-1 rounded-full w-8 h-8 bg-gray-200 hover:bg-gray-300 p-0 border-0 inline-flex items-center justify-center text-gray-500">
+                  <svg {% if request.user in item.liked_by.all %} fill="#f87171" {% else %} fill="currentColor" {% endif%} stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
                   <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
                 </svg>
-            </button>
+            </button></a>
         <div class="bg-gray-100 rounded-b-xl p-2">
           <h3 class="text-gray-700 text-xs tracking-widest title-font"> {{ item.category }}</h3>
           <h2 class="text-gray-700 title-font text-base font-medium">{{ item.name }}</h2>
-          <p class="text-sm mb-1 text-gray-500 dark:text-gray-400"><span class="mr-1 text-base font-semibold text-gray-700">{% if item.is_usd == True %}${{ item.price|floatformat:0 }}{% else %}{{ item.price|floatformat:0 }} BYN{% endif %} <span class="text-sm font-normal ml-2"> {{ item.location }}</span></p>
+          <p class="text-sm mb-1 text-gray-500 dark:text-gray-400"><span class="mr-1 text-base font-semibold text-gray-700">{% if item.is_usd == True %}${{ item.price|floatformat:0 }}{% else %}{{ item.price|floatformat:0 }} BYN{% endif %} <span class="text-sm font-normal ml-2"> {{ item.location }} обл.</span></p>
 		</div>
 			</a>
       </div>
@@ -34,8 +34,9 @@
 
   <div class="rounded-xl mt-8 flex items-center justify-between border-t bg-gray-200 px-4 py-3 sm:px-6">
   <div class="flex flex-1 justify-between sm:hidden">
-    <a href="#" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
-    <a href="#" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
+    <a href="{% if items.has_previous %}?page={{ items.previous_page_number }}{%else%}{%endif%}" class="relative inline-flex items-center rounded-md border {% if items.has_previous %} text-gray-700 bg-white hover:bg-gray-50 focus:z-20 focus:outline-offset-0{%else%} bg-gray-200 text-gray-200 {%endif%}  px-4 py-2 text-sm font-medium">Предыдущая</a>
+    <a href="?page={{ items.number }}" aria-current="page" class="rounded-xl relative z-10 inline-flex items-center bg-gray-400 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">{{ items.number }}</a>
+    <a href="{% if items.has_next %}?page={{ items.next_page_number }}{%else%}{% endif %}" class="relative inline-flex items-center rounded-md border {% if items.has_next %} text-gray-700 bg-white hover:bg-gray-50 focus:z-20 focus:outline-offset-0{%else%} bg-gray-200 text-gray-200 {%endif%}  px-4 py-2 text-sm font-medium ">Следующая</a>
   </div>
   <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
     <div>
@@ -60,7 +61,7 @@
           </svg>
         </a>
         <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
-        <a href="?page={{ items.number }}" aria-current="page" class="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">{{ items.number }}</a>
+        <a href="?page={{ items.number }}" aria-current="page" class="relative z-10 inline-flex items-center bg-gray-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">{{ items.number }}</a>
         <a href="{% if items.has_next %}?page={{ items.next_page_number }}{%else%}{% endif %}" class="{% if items.has_next %} bg-white hover:bg-gray-100 focus:z-20 focus:outline-offset-0{%else%}bg-gray-200{%endif%} relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300">
           <span class="sr-only">Следующая</span>
           <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -74,6 +75,20 @@
     </div>
   </div>
 
+
+<script type="text/javascript">
+window.CSRF_TOKEN = "{{csrf_token}}"
+$(document).on('click', '.btn-item-like', function(){
+    var item_id = this.id
+    console.log(item_id)
+    $.ajax({
+        method:"POST",
+        url:`/items/${item_id}/like/`,
+        data:{item_id:item_id, csrfmiddlewaretoken:window.CSRF_TOKEN}
+    });
+    window.location.href="http://127.0.0.1:8000/items/"
+})
+</script>
 
 
 

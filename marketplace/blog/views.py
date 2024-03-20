@@ -30,6 +30,7 @@ def blogpost_detail(request, slug):
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
         new_comment = comment_form.save(commit=False)
+        new_comment.author = request.user
         post_id = request.POST.get('post_id')
         post = get_object_or_404(Post, id=post_id)
         new_comment.post = post
@@ -68,13 +69,12 @@ class PostLikeToggle(RedirectView):
         return url_
 
 
-def like_post(request):
+def like_comment(request, pk):
     """Is not used right now"""
-    post_id = request.POST.get('post_id', '')
-    post = get_object_or_404(Post, id=post_id)
-    if post.likes.filter(id=request.user.id).exists():
-        post.likes.remove(request.user)
-    else:
-        post.likes.add(request.user)
+    comment = get_object_or_404(Comment, id=pk)
 
-    return redirect('blog_index')
+    if comment.likes.filter(id=request.user.id).exists():
+        comment.likes.remove(request.user)
+    else:
+        comment.likes.add(request.user)
+

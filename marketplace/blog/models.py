@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from django.shortcuts import reverse
+from django.contrib.auth.models import User
+
 
 
 class Category(models.Model):
@@ -21,6 +23,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='blog_images', blank=True, null=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='post_likes')
     created_on = models.DateTimeField(auto_now_add=True)
+    post_author = models.ForeignKey(User, related_name='post_created_by', on_delete=models.CASCADE, default="nickitque")
     last_modified = models.DateTimeField(auto_now=True)
     categories = models.ManyToManyField("Category", related_name="posts")
 
@@ -40,10 +43,11 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    author = models.CharField(max_length=60)
+    author = models.ForeignKey(User, related_name='comment_created_by', on_delete=models.CASCADE)
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='comment_likes')
 
     class Meta:
         ordering = ('created_on',)

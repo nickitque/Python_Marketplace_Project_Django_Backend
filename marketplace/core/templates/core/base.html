@@ -18,13 +18,13 @@
     <header class="text-gray-600 body-font border-b border-gray-200">
   <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
     <a href="/" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-                <img class="max-h-12" src="/media/core_images/rm-logo.png" alt=""></a>
+    <img class="max-h-12" src="/media/core_images/rm-logo.png" alt=""></a>
     <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-      <a href="{% url 'item:items' %}" class="mr-5 hover:text-gray-900">Маркетплейс</a>
-    <a class="md:hover:text-blue-700" href="{% url 'blog:blog_index' %}">Блог</a>
-    <svg id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="mr-3 md:hover:text-blue-700 w-2.5 h-2.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-  </svg>
+        <a href="{% url 'item:items' %}" class="mr-6 hover:text-blue-700">Маркетплейс</a>
+        <a class="md:hover:text-blue-700" href="{% url 'blog:blog_index' %}">Блог</a>
+        <svg id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class=" mr-6 md:hover:text-white hover:bg-gray-700 rounded-xl w-3.5 h-3.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+        </svg>
             <!-- Dropdown menu -->
         <div id="dropdownNavbar" class="z-10 hidden border font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                 <div class="py-1">
@@ -75,8 +75,9 @@
                     </a>
                   </li>
                 </ul>
-            </div>      <a class="mr-5 hover:text-gray-900">Календарь</a>
-      <a class="mr-5 hover:text-gray-900">Контакты</a>
+            </div>
+        <a href="{% url 'events' %}" class="mr-5 hover:text-gray-900">Календарь</a>
+      <a href="{% url 'core:contact' %}" class="mr-5 hover:text-gray-900">Контакты</a>
     </nav>
               {% if request.user.is_authenticated %}
       <button class="sm:mb-4 mt-4">
@@ -171,7 +172,7 @@
             <a class="text-gray-600 hover:text-gray-800">Time-Attack</a>
           </li>
           <li>
-            <a class="text-gray-600 hover:text-gray-800">Все новости</a>
+            <a class="text-gray-600 hover:text-gray-800">Календарь</a>
           </li>
         </nav>
       </div>
@@ -214,7 +215,7 @@
   <div class="bg-gray-100">
     <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
       <p class="text-gray-500 text-sm text-center sm:text-left">© 2024 Race-Marketplace.by —
-        <a href="{% url 'core:user_agreement'  %}" rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">Пользовательское соглашение</a>
+        <a href="{% url 'core:privacy'  %}" rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">Пользовательское соглашение</a>
       </p>
       <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
         <a class="text-gray-500">

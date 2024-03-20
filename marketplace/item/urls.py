@@ -10,6 +10,6 @@ urlpatterns = [
     path('<slug:category_slug>/<int:pk>/', views.detail, name='detail'),
     path('<int:pk>/delete', views.delete, name='delete'),
     path('<int:pk>/edit', views.edit, name='edit'),
-    path('<slug:category_slug>/<int:pk>/', views.like_item, name="like-toggle"),
+    path('<int:pk>/like/', views.like_item, name="like-toggle"),
 
 ]

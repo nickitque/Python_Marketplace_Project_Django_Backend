@@ -46,11 +46,12 @@ class Item(models.Model):
     is_sold = models.BooleanField(default=False)
     is_rateable = models.BooleanField(default=False)
     is_usd = models.BooleanField(default=True)
+    is_moderated = models.BooleanField(default=False)
     created_by = models.ForeignKey(User, related_name='created', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     location = models.ForeignKey(Location, related_name='locations', on_delete=models.CASCADE, default=1)
-    liked_by = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='posts_liked', blank=True)
+    liked_by = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='items_liked', blank=True)
 
     @property
     def image_url(self):

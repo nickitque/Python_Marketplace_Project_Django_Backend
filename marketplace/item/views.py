@@ -12,7 +12,7 @@ def items(request):
     category_id = request.GET.get('category', 0)
     categories = Category.objects.all()
     pagination_items = Item.objects.filter(is_sold=False)
-    items = Item.objects.filter(is_sold=False)
+    items = Item.objects.filter(is_sold=False).order_by('created_at').reverse()
 
     if category_id:
         items = items.filter(category_id=category_id)
@@ -55,11 +55,13 @@ def detail(request, category_slug, pk):
     item = get_object_or_404(Item, pk=pk)
     related_items = Item.objects.filter(category=item.category, is_sold=False).exclude(pk=pk)[0:3]
     price_usd = item.price * 0.31
+    price_byn = item.price / 0.31
 
     return render(request, 'item/detail.html', {
         'item': item,
         'related_items': related_items,
         'price_usd': price_usd,
+        'price_byn': price_byn,
     })
 
 
@@ -78,9 +80,9 @@ class ItemLikeToggle(RedirectView):
         return url_
 
 
-def like_item(request):
-    item_id = request.POST.get('item_id')
-    item = get_object_or_404(Item, id=item_id)
+def like_item(request, pk):
+    item = get_object_or_404(Item, id=pk)
+
     if item.liked_by.filter(id=request.user.id).exists():
         item.liked_by.remove(request.user)
     else:
