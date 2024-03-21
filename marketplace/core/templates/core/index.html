@@ -21,29 +21,25 @@
     </div>
 </section>
 </div>
-<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-
-    <h2 class="mb-10 text-4xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-4xl dark:text-white text-center">Новые объявления</h2>
-
-    <div class="grid xl:grid-cols-5 gap-3 md:grid-cols-3 sm:grid-cols-1">
-        {% for item in items %}
-        <div>
-            <a href="{% url 'item:detail' item.category.slug item.pk %}">
-                <div>
-                    <img class="h-52 w-full object-cover rounded-t-xl" src="{{ item.image_url|default_if_none:'/media/item_images/default.png' }}" alt="{{ item.name }}">
-                </div>
-
-                <div class="p-2 bg-white rounded-b-xl">
-                    <h3 class="text-base text-gray-900 dark:text-white">{{ item.name }}</h3>
-                    <p class="text-base text-gray-900 font-extralight dark:text-white">{{ item.price|floatformat:0 }} BYN | {{ item.price|floatformat:0 }} USD</p>
-                    <p class="text-sm">Минск, {{ item.location }}</p>
-                </div>
-            </a>
-        </div>
-        {% endfor %}
+<div class="container mx-auto">
+    <div class="flex flex-wrap mt-2">
+      <!--Items loop-->
+       {% for item in items %}
+      <div class="lg:w-1/5 md:w-1/2 p-1 w-full overflow-hidden relative">
+        <a href="{% url 'item:detail' item.category.slug  item.pk %}" class="block relative rounded overflow-hidden">
+            <img alt="{{ item.name }}" class="h-48 w-full object-cover object-center block rounded-t-xl" src="{{ item.image_url|default_if_none:'/media/item_images/default.png' }}">
+        <div class="bg-gray-100 rounded-b-xl p-2">
+          <h3 class="text-gray-700 text-xs tracking-widest title-font"> {{ item.category }}</h3>
+          <h2 class="text-gray-700 title-font text-base font-medium">{{ item.name }}</h2>
+          <p class="text-sm mb-1 text-gray-500 dark:text-gray-400"><span class="mr-1 text-base font-semibold text-gray-700">{% if item.is_usd == True %}${{ item.price|floatformat:0 }}{% else %}{{ item.price|floatformat:0 }} BYN{% endif %} <span class="text-sm font-normal ml-2"> {{ item.location }} обл.</span></p>
+		</div>
+			</a>
+      </div>
+      {% endfor %}
+      <!--End items loop-->
     </div>
     <div class="leading-none tracking-tight text-center">
-        <a href="{% url 'item:items' %}"><button type="button" class="mt-6 text-white bg-gray-500 hover:bg-indigo-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <a href="{% url 'item:items' %}"><button type="button" class="mt-6 mb-10 text-white bg-gray-500 hover:bg-indigo-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Перейти в маркетплейс
         <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -101,7 +97,7 @@
           <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{ post.image_url|default_if_none:'/media/item_images/default.png' }}" alt="blog">
             </a>
             <div class="p-6">
-            <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY | {{ post.created_on.date }}</h2>
+            <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">{{ post.created_on.date }}</h2>
             <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{ post.title }}</h1>
             <p class="leading-relaxed mb-3">{{ post.descr }}</p>
             <div class="flex items-center flex-wrap ">
@@ -128,8 +124,8 @@
   </div>
 </section>
           <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-        <div class="relative rounded-full px-3 py-2 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-          И многое другое в нашем<a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span> Блоге <span aria-hidden="true">&rarr;</span></a>
+              <div class="relative rounded-full px-3 py-2 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+          И многое другое в нашем<a href="{% url 'blog:blog_index' %}" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span> Блоге <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
 

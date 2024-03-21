@@ -3,7 +3,7 @@
 {% block title %} О нас {% endblock %}
 {% block content %}
 <div class="md:container px-5 md:mx-auto">
-<h2 class="mb-4 text-5xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-5xl dark:text-white">Маркетплейс, где собраны <span class="text-blue-600 dark:text-blue-500">гоночные</span> объявления</h2>
+<h2 class="mb-4 text-5xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-5xl dark:text-white"><span class="text-red-600">Race</span>-Marketplace.by</h2>
 </div>
 
 
@@ -11,55 +11,85 @@
   <div class="container px-5 py-12 mx-auto">
     <div class="flex flex-wrap w-full mb-20">
       <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-        <h1 class="sm:text-3xl text-3xl font-bold title-font mb-2 text-gray-900">Кто Мы?</h1>
+        <h2 class="sm:text-3xl text-3xl font-bold title-font mb-2 text-gray-900">Кто Мы?</h2>
         <div class="h-1 w-20 bg-indigo-500 rounded"></div>
       </div>
-      <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Команда любителей Дрифта, Тайм-Аттака и Драг-рейсинга. Этот проект сделан для того, чтобы развивать автоспорт в РБ.</p>
+      <p class="lg:w-1/2 w-full leading-relaxed text-gray-700">Команда любителей <b>Дрифта, Тайм-Аттака и Драг-рейсинга</b>. Этот проект создан для объединения Автолюбителей. Наша цель - облегчить поиск запчастей и спортивных автомобилей</p>
     </div>
       <div class="flex flex-wrap w-full mb-10">
       <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-        <h1 class="sm:text-3xl text-3xl font-bold title-font mb-2 text-gray-900">Разделы сайта</h1>
+        <h2 class="sm:text-3xl text-3xl font-bold title-font mb-2 text-gray-900">Разделы сайта</h2>
         <div class="h-1 w-20 bg-indigo-500 rounded"></div>
       </div>
-      <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">В нижеперечисленных карточках Вы найдете основные направления сайта.</p>
+      <p class="lg:w-1/2 w-full leading-relaxed text-gray-700">В нижеперечисленных карточках Вы найдете основные направления сайта.</p>
     </div>
     <div class="flex flex-wrap -m-4">
       <div class="xl:w-1/4 md:w-1/2 p-4">
+         <a href="{% url 'item:items' %}wheelsrims/">
         <div class="bg-gray-100 p-6 rounded-lg">
           <img class="h-40 rounded w-full object-cover object-center mb-6" src="/media/blog_images/felgi.png" alt="wheels & rims">
-          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">СТИЛЬНЫЕ</h3>
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">MARKETPLACE</h3>
           <h2 class="text-lg text-gray-900 font-medium title-font">Шины и Диски</h2>
           <p class="leading-relaxed text-sm">Нестандартные диски и спортивные шины. Как новые, так и б/у.</p>
         </div>
+         </a>
       </div>
       <div class="xl:w-1/4 md:w-1/2 p-4">
+        <a href="{% url 'item:items' %}cars/">
         <div class="bg-gray-100 p-6 rounded-lg">
           <img class="h-40 rounded w-full object-cover object-center mb-6" src="/media/blog_images/e36.jpeg" alt="content">
-          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">СПОРТИВНЫЕ</h3>
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">MARKETPLACE</h3>
           <h2 class="text-lg text-gray-900 font-medium title-font">Автомобили</h2>
           <p class="leading-relaxed text-sm">К публикации допускаются только доработанные автомобили, либо "заряженные" заводские.</p>
         </div>
+        </a>
       </div>
       <div class="xl:w-1/4 md:w-1/2 p-4">
+        <a href="{% url 'item:items' %}services/">
         <div class="bg-gray-100 p-6 rounded-lg">
           <img class="h-40 rounded w-full object-cover object-center mb-6" src="/media/blog_images/ecu.jpeg" alt="content">
-          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">КАСТОМНЫЕ</h3>
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">MARKETPLACE</h3>
           <h2 class="text-lg text-gray-900 font-medium title-font">Услуги</h2>
           <p class="leading-relaxed text-sm">Прошивки ЭБУ, сварка кастомного выхлопа или башбара. Установка выворота и многое другое.</p>
         </div>
+          </a>
       </div>
       <div class="xl:w-1/4 md:w-1/2 p-4">
-      <a href="{% url 'blog:blog_index' %}">
+      <a href="{% url 'item:items' %}simracing/">
         <div class="bg-gray-100 p-6 rounded-lg">
-          <img class="h-40 rounded w-full object-cover object-center mb-6" src="/media/blog_images/22rt.jpeg" alt="content">
-          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">АКТУАЛЬНЫЕ</h3>
-          <h2 class="text-lg text-gray-900 font-medium title-font">Новости</h2>
-          <p class="leading-relaxed text-sm">Из мира автоспорта РБ. Фотоотчеты, афиши и результаты соревнований.</p>
+          <img class="h-44 rounded w-full object-cover object-center mb-6" src="/media/core_images/cockpit.webp" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">MARKETPLACE</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font">SimRacing</h2>
+          <p class="leading-relaxed text-sm"> Рули, шифтеры и педали, а также кокпиты для СимРейсеров.</p>
         </div>
       </a>
 
       </div>
-      <h2 class="mt-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">Календарь с <span class="text-blue-600 dark:text-blue-500">гоночными</span> ивентами.</h2>
+      <section class="text-gray-600 body-font">
+  <div class="container px-5 py-2 mx-auto">
+    <div class="flex flex-wrap -mx-4 -mb-10 text-center">
+      <div class="sm:w-1/2 mb-10 px-4">
+        <a href="{% url 'blog:blog_index' %}">
+        <div class="rounded-lg h-64 overflow-hidden">
+          <img alt="content" class="object-cover object-center h-full w-full" src="/media/core_images/22rt-trackday.jpeg">
+        </div>
+        <h2 class="title-font text-2xl font-medium text-gray-900 mt-6 mb-3"><span class="text-red-600">Race</span> Блог</h2>
+        <p class="leading-relaxed text-base">Williamsburg occupy sustainable snackwave gochujang. Pinterest cornhole brunch, slow-carb neutra irony.</p>
+      </a>
+      </div>
+      <div class="sm:w-1/2 mb-10 px-4">
+        <a href="{% url 'events' %}">
+        <div class="rounded-lg h-64 overflow-hidden">
+          <img alt="content" class="object-cover object-center h-full w-full" src="/media/blog_images/22rt.jpeg">
+        </div>
+        <h2 class="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">Календарь</h2>
+        <p class="leading-relaxed text-base">Williamsburg occupy sustainable snackwave gochujang. Pinterest cornhole brunch, slow-carb neutra irony.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     </div>
   </div>

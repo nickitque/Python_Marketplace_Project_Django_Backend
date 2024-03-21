@@ -70,17 +70,17 @@
   </ol>
 </nav>
 
+  <h1 class="mt-6 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"> {{ post.title }}</h1>
+    <div class="flex justify-center items-center">
+    <img class="max-w-lg mb-4 mt-4" src="{{ post.image_url|default_if_none:'/media/item_images/default.png' }}">
+</div>
+    <div class="text-base leading-7 text-gray-700">
+    {{ post.body | safe }}
 
-          <h1 class="mt-6 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"> {{ post.title }}</h1>
-            <img class="h-90 max-w-lg mb-4 mt-4" src="{{ post.image_url|default_if_none:'/media/item_images/default.png' }}">
-            <div class="text-base leading-7 text-gray-700">
-            {{ post.body | safe }}
 
-
-                <!--Gallery section -->
-
-                <section class="text-gray-600 body-font">
-  <div class="container py-14 mx-auto flex flex-wrap">
+<!--Gallery section -->
+<section class="text-gray-600 body-font">
+  <div class="container py-6 mx-auto flex flex-wrap">
     <div class="flex w-full mb-10 flex-wrap">
       <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900 lg:w-1/3 lg:mb-0 mb-4">Фотоотчет с мероприятия</h1>
       <p class="lg:pl-6 lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom.</p>
@@ -111,13 +111,12 @@
     </div>
   </div>
 </section>
-
 <!-- End gallery section -->
 
 
 
-                <section class="text-gray-600 body-font overflow-hidden">
-  <div class="container px-5 py-12 mx-auto">
+<section class="text-gray-600 body-font overflow-hidden">
+  <div class="container px-5 py-2 mx-auto">
     <div class="flex flex-wrap -m-12">
       <div class="p-12 md:w-1/2 flex flex-col items-start">
         <a href="{% url 'dashboard:seller_detail' post.post_author.id %}" class="inline-flex items-center">
@@ -152,16 +151,21 @@
 
 
 
+
 <section class="bg-white dark:bg-gray-900 antialiased">
   <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Комментарии ({{ comments.count }})</h2>
     </div>
+        <div class="mb-5">
+    <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ваш Комментарий</label>
+    <input type="text" id="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
+  </div>
     {% if request.user.is_authenticated %}
     <form method="post" class="mb-6">
         {% csrf_token %}
-        <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-400 dark:bg-gray-800 dark:border-gray-700">{{ comment_form.body }}
-        <input type="hidden" name="post_id" id="post_id" value="{{ post.id }}"></div>
+        <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-400 dark:bg-gray-800 dark:border-gray-700">{{ comment_form.body }}</div>
+        <input type="hidden" name="post_id" id="post_id" value="{{ post.id }}">
         <button type="submit" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
             Отправить
         </button>
