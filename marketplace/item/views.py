@@ -12,7 +12,7 @@ def items(request):
     category_id = request.GET.get('category', 0)
     categories = Category.objects.all()
     pagination_items = Item.objects.filter(is_sold=False)
-    items = Item.objects.filter(is_sold=False).order_by('created_at').reverse()
+    items = Item.objects.filter(is_sold=False, is_moderated=True).order_by('created_at').reverse()
 
     if category_id:
         items = items.filter(category_id=category_id)
@@ -21,7 +21,7 @@ def items(request):
         items = items.filter(Q(name__icontains=query) | Q(description__icontains=query))
 
     # paginator code
-    paginator = Paginator(items, 10)
+    paginator = Paginator(items, 15)
     page = request.GET.get('page')
     items = paginator.get_page(page)
 
@@ -38,7 +38,7 @@ def category_detail(request, slug):
     categories = Category.objects.all()
     category = get_object_or_404(Category, slug=slug)
     category_id = request.GET.get('category', 0)
-    items = category.items.filter(is_sold=False)
+    items = category.items.filter(is_sold=False, is_moderated=True)
 
     if category_id:
         items = items.filter(category_id=category_id)
@@ -53,7 +53,7 @@ def category_detail(request, slug):
 
 def detail(request, category_slug, pk):
     item = get_object_or_404(Item, pk=pk)
-    related_items = Item.objects.filter(category=item.category, is_sold=False).exclude(pk=pk)[0:3]
+    related_items = Item.objects.filter(category=item.category, is_sold=False, is_moderated=True).order_by('created_at').reverse().exclude(pk=pk)[0:8]
     price_usd = item.price * 0.31
     price_byn = item.price / 0.31
 

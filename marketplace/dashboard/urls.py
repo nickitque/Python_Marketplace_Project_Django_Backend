@@ -8,4 +8,5 @@ urlpatterns = [
     path('account/', views.account, name='account'),
     path('favorites/', views.favorites, name='favorites'),
     path('seller/<slug:pk>', views.seller_detail, name='seller_detail'),
+    path('moder123moder/', views.moderation, name='moderation')
 ]

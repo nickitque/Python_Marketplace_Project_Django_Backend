@@ -38,9 +38,16 @@ def favorites(request):
     })
 
 
+@login_required
+def moderation(request):
+    items = Item.objects.filter(is_moderated=False).order_by('created_at').reverse()
+    return render(request, 'dashboard/moder.html', {
+        'items': items,
+    })
+
 def seller_detail(request, pk):
     user = User.objects.get(pk=pk)
-    items = Item.objects.filter(created_by=user.id)
+    items = Item.objects.filter(created_by=user.id, is_moderated=True)
     return render(request, 'dashboard/seller_detail.html', {
         'user': user,
         'items': items,

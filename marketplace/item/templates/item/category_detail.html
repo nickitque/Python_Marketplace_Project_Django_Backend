@@ -5,9 +5,12 @@
 
 {% block content %}
 
+
 {% menu %}
 
   <div class="container mx-auto">
+              <h1 class="title-font sm:text-2xl text-3xl mb-4 ml-2 font-medium text-gray-900">Категория <span class="text-indigo-600">{{ category.name }}</span></h1>
+
     <div class="flex flex-wrap mt-2">
       <!--Categories loop-->
         {% for subcategory in category.children.all %}
@@ -40,22 +43,24 @@
       </h1>
       <p class="mb-8 leading-relaxed">Вы можете стать первым! Для того, чтобы добавить новое объявление, нужно быть зарегестрированным пользователем и нажать "Новое объявление".</p>
       <div class="flex justify-center">
-        <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-base">Новое объявление
+          <a href="{% url 'item:new' %}">
+              <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-base">Новое объявление
         		<svg class="ml-1.5 w-5 h-5" viewBox="0 -7 26 26" xmlns="http://www.w3.org/2000/svg" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill="white" fill-rule="evenodd" d="M10 3a7 7 0 100 14 7 7 0 000-14zm-9 7a9 9 0 1118 0 9 9 0 01-18 0zm14 .069a1 1 0 01-1 1h-2.931V14a1 1 0 11-2 0v-2.931H6a1 1 0 110-2h3.069V6a1 1 0 112 0v3.069H14a1 1 0 011 1z"></path> </g></svg>
-        </button>
+                </button>
+          </a>
         <a href="/"><button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-base">На главную</button></a>
-      </div>
-    </div>
-    <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+          </div>
+        </div>
 
+      <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
       <img alt="{{ category.name }}" class="object-cover object-center max-w-96 rounded-xl" alt="hero" src="{{ category.image_url|default_if_none:'/media/item_images/default.png' }}">
     </div>
   </div>
 </section>
 
         {% else %}
-
         {% endif %}
+
             {% if category.children.all.count > 0 %}
             <section class="text-gray-600 body-font">
             <div class="container px-5 py-24 mx-auto">
@@ -66,7 +71,6 @@
             </div>
           </section>
           {% else %}
-
         {% endif %}
 
        {% for item in items %}
@@ -83,9 +87,9 @@
       </div>
       {% endfor %}
       <!--End items loop-->
-      </div>
-  </div>
-</div>
+              </div>
+          </div>
+        </div>
     </div>
   </div>
 

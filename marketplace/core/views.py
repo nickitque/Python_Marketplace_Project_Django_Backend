@@ -14,7 +14,7 @@ def logout_view(request):
 
 
 def index(request):
-    items = Item.objects.filter(is_sold=False).order_by('created_at').reverse()[0:10]
+    items = Item.objects.filter(is_sold=False, is_moderated=True).order_by('created_at').reverse()[0:10]
     posts = Post.objects.all().order_by("-created_on")[0:3]
     categories = Category.objects.all()
     filled_categories = Category.objects.filter()
